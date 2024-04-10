@@ -12,7 +12,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 builder.Services.AddScoped<IProductRepository, DbProductRepository>();
 builder.Services.AddScoped<ICategoryRepository, DbCategoryRepository>();
-
+builder.Services.AddScoped<IProductCategoryRepository, DbProductCategoryRepository>();
 
 
 var app = builder.Build();

@@ -19,22 +19,22 @@ namespace AdvWebFinal.Controllers
             return View(await _categoryRepo.ReadAllAsync());
         }
 
-        public async Task<IActionResult> AddCategory(int id)
+        public async Task<IActionResult> AddCategory(
+        [Bind(Prefix = "id")] int productId)
         {
-            var product = await _productRepo.ReadAsync(id);
+            var product = await _productRepo.ReadAsync(productId);
             if (product == null)
             {
                 return RedirectToAction("Index", "Product");
             }
-
-            var allCategories = await _categoryRepo.ReadAllAsync(); // Assuming you have a method to read all categories
-
-            // Pass the product and available categories to the view using ViewData
+            var allCategories = await _categoryRepo.ReadAllAsync();
+            var categoriesAssigned = product.ProductCategory
+                .Select(pc => pc.Category).ToList();
+            var categoriesNotAssigned = allCategories.Except(categoriesAssigned);
             ViewData["Product"] = product;
-            ViewData["AllCategories"] = allCategories;
-
-            return View();
+            return View(categoriesNotAssigned);
         }
+
 
 
 

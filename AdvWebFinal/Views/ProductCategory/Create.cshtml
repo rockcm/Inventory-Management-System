@@ -1,0 +1,12 @@
+﻿@model ProductCategory
+
+<h3>
+    Are you sure you want to assign category @Model.Category.Name to product @Model.Product.Name?
+</h3>
+
+<form asp-action="CreateConfirmed" method="post" id="formCreateProductCategory">
+    <input type="hidden" name="productId" value="@Model.Product.Id" />
+    <input type="hidden" name="categoryId" value="@Model.Category.Id" />
+    <input type="submit" value="Assign" class="btn btn-primary" /> |
+    <a asp-action="Index" asp-controller="Product">Cancel</a>
+</form>
