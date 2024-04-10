@@ -5,8 +5,8 @@
 </h3>
 
 <form asp-action="CreateConfirmed" method="post" id="formCreateProductCategory">
-    <input type="hidden" name="productId" value="@Model.Product.Id" />
-    <input type="hidden" name="categoryId" value="@Model.Category.Id" />
+    <input type="hidden" asp-for="ProductId" />
+    <input type="hidden" asp-for="CategoryId" />
     <input type="submit" value="Assign" class="btn btn-primary" /> |
     <a asp-action="Index" asp-controller="Product">Cancel</a>
 </form>

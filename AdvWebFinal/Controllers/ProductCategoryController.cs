@@ -57,12 +57,13 @@ namespace AdvWebFinal.Controllers
             return View(productCategory);
         }
 
-        [HttpPost, ValidateAntiForgeryToken, ActionName("Create")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [ActionName("CreateConfirmed")]
         public async Task<IActionResult> CreateConfirmed(int productId, int categoryId)
         {
             await _productCategoryRepo.CreateAsync(productId, categoryId);
-            return RedirectToAction("Details", "Product", new {id  = productId});
+            return RedirectToAction("Details", "Product", new { id = productId });
         }
-
     }
 }
