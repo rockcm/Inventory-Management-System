@@ -6,6 +6,7 @@ namespace AdvWebFinal.Services
     {
         Task<ICollection<Product>> ReadAllAsync();
         Task<Product?> ReadAsync(int id);
+        Task<Product> CreateAsync(Product product);
         
     }
 }

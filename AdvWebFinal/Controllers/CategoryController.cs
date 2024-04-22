@@ -1,4 +1,5 @@
-﻿using AdvWebFinal.Services;
+﻿using AdvWebFinal.Models.Entities;
+using AdvWebFinal.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AdvWebFinal.Controllers
@@ -35,7 +36,23 @@ namespace AdvWebFinal.Controllers
             return View(categoriesNotAssigned);
         }
 
+        public IActionResult Create()
+        {
+            return View();
+        }
 
+        // POST: Product/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(Category category)
+        {
+            if (ModelState.IsValid)
+            {
+                await _categoryRepo.CreateAsync(category);
+                return RedirectToAction("Index", "category");
+            }
+            return View(category);
+        }
 
 
 

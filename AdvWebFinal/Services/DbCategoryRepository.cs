@@ -29,5 +29,13 @@ namespace AdvWebFinal.Services
                         .ThenInclude(pc => pc.Product)
                         .ToListAsync();
         }
+
+        public async Task<Category> CreateAsync(Category category)
+        {
+            _db.Categories.Add(category);
+            await _db.SaveChangesAsync();
+            return category;
+        }
+
     }
 }

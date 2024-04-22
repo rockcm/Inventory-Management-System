@@ -19,6 +19,19 @@ builder.Services.AddControllers().AddJsonOptions(options =>
     options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
 });
 
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(
+       builder =>
+       {
+           builder.WithOrigins(
+               "https://localhost:7095", "https://web.postman.co")
+                .AllowAnyHeader()
+                .AllowAnyMethod();
+       });
+});
+
+
 var app = builder.Build();
 
 

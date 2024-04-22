@@ -29,9 +29,12 @@ namespace AdvWebFinal.Controllers
             return Ok(products);
         }
 
-        // Implement other CRUD operations for products as needed
-
-        // Category CRUD operations
+        [HttpPost("createproduct")]
+        public IActionResult Post([FromForm] Product product)
+        {
+            _productRepo.CreateAsync(product);
+            return CreatedAtAction("Get", new { id = product.Id }, product);
+        }
 
         [HttpGet("categories")]
         public async Task<ActionResult<IEnumerable<Category>>> GetCategories()
@@ -40,10 +43,7 @@ namespace AdvWebFinal.Controllers
             return Ok(categories);
         }
 
-        // Implement other CRUD operations for categories as needed
-
-        // ProductCategory CRUD operations
-
+     
         [HttpGet("productcategories")]
         public async Task<ActionResult<IEnumerable<ProductCategory>>> GetProductCategories()
         {
@@ -51,6 +51,6 @@ namespace AdvWebFinal.Controllers
             return Ok(productCategories);
         }
 
-        // Implement other CRUD operations for product categories as needed
+     
     }
 }

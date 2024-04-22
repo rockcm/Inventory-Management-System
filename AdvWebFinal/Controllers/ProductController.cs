@@ -32,7 +32,24 @@ namespace AdvWebFinal.Controllers
             return View(product);
         }
 
+     
+        public IActionResult Create()
+        {
+            return View();
+        }
 
+        // POST: Product/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(Product product)
+        {
+            if (ModelState.IsValid)
+            {
+                await _productRepo.CreateAsync(product);
+                return RedirectToAction("Index", "product");
+            }
+            return View(product);
+        }
 
     }
 }

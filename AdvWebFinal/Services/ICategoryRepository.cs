@@ -7,6 +7,7 @@ namespace AdvWebFinal.Services
         Task<ICollection<Category>> ReadAllAsync();
 
         Task<Category?> ReadAsync(int id);
+        Task<Category> CreateAsync(Category category);
 
     }
 }

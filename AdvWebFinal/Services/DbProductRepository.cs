@@ -31,6 +31,13 @@ namespace AdvWebFinal.Services
 
         }
 
+        public async Task<Product> CreateAsync(Product product)
+        {
+            _db.Products.Add(product);
+            await _db.SaveChangesAsync();
+            return product;
+        }
+
 
     }
 }
