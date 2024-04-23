@@ -38,18 +38,12 @@ namespace AdvWebFinal.Controllers
             return View();
         }
 
-        // POST: Product/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Product product)
+        public IActionResult Update()
         {
-            if (ModelState.IsValid)
-            {
-                await _productRepo.CreateAsync(product);
-                return RedirectToAction("Index", "product");
-            }
-            return View(product);
+            return View();
         }
+
+    
 
     }
 }

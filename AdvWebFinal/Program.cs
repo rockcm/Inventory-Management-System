@@ -14,6 +14,14 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddScoped<IProductRepository, DbProductRepository>();
 builder.Services.AddScoped<ICategoryRepository, DbCategoryRepository>();
 builder.Services.AddScoped<IProductCategoryRepository, DbProductCategoryRepository>();
+
+builder.Services.AddControllersWithViews()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.IgnoreReadOnlyProperties = true;
+    });
+
+
 builder.Services.AddControllers().AddJsonOptions(options =>
 {
     options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
@@ -30,6 +38,7 @@ builder.Services.AddCors(options =>
                 .AllowAnyMethod();
        });
 });
+
 
 
 var app = builder.Build();

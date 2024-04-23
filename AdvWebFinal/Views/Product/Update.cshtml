@@ -1,0 +1,61 @@
+﻿@model AdvWebFinal.Models.Entities.Product
+@{
+    ViewData["Title"] = "Edit Product";
+}
+
+<h1>Edit Product</h1>
+<br />
+<h4 id="productHeading">Product</h4>
+
+<div class="row">
+    
+    <div class="col-md-4">
+<form asp-action="Edit" id="formProductEdit">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group">
+        <label asp-for="Id" class="control-label">ID</label>
+        <input asp-for="Id" class="form-control" readonly>
+        <span asp-validation-for="Id" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Name" class="control-label">Name</label>
+        <input asp-for="Name" class="form-control">
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Description" class="control-label">Description</label>
+        <input asp-for="Description" class="form-control">
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="PurchasePrice" class="control-label">Purchase Price</label>
+        <input asp-for="PurchasePrice" class="form-control">
+        <span asp-validation-for="PurchasePrice" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="SellPrice" class="control-label">Sell Price</label>
+        <input asp-for="SellPrice" class="form-control">
+        <span asp-validation-for="SellPrice" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Stock" class="control-label">Stock</label>
+        <input asp-for="Stock" class="form-control">
+        <span asp-validation-for="Stock" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Image" class="control-label">Image</label>
+        <input asp-for="Image" class="form-control">
+        <span asp-validation-for="Image" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    <script src="~/js/productUpdate.js" type="module"></script>
+}
+
+

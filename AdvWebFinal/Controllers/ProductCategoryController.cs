@@ -65,5 +65,7 @@ namespace AdvWebFinal.Controllers
             await _productCategoryRepo.CreateAsync(productId, categoryId);
             return RedirectToAction("Details", "Product", new { id = productId });
         }
+
+     
     }
 }

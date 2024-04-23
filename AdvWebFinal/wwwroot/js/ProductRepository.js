@@ -15,7 +15,7 @@ export class ProductRepository {
     }
 
     async read(id) {
-        const address = `${this.#baseAddress}/one/${id}`;
+        const address = `${this.#baseAddress}/products/${id}`;
         const response = await fetch(address);
         if (!response.ok) {
             throw new Error("There was an HTTP error getting the product data.");
@@ -57,4 +57,6 @@ export class ProductRepository {
         }
         return await response.text();
     }
+
+
 }

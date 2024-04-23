@@ -29,12 +29,32 @@ namespace AdvWebFinal.Controllers
             return Ok(products);
         }
 
-        [HttpPost("createproduct")]
-        public IActionResult Post([FromForm] Product product)
+        [HttpGet("products/{id}")]
+        public async Task<ActionResult<Product>> Get(int id)
         {
-            _productRepo.CreateAsync(product);
+            var product = await _productRepo.ReadAsync(id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+            return Ok(product);
+        }
+
+        [HttpPost("createproduct")]
+        public async Task<IActionResult> Post([FromForm] Product product)
+        {
+             await _productRepo.CreateAsync(product);
             return CreatedAtAction("Get", new { id = product.Id }, product);
         }
+
+
+        [HttpPut("update")]
+        public async Task<IActionResult> Put([FromForm] Product product)
+        {
+            await _productRepo.UpdateAsync(product);
+            return NoContent(); // 204 as per HTTP specification
+        }
+
 
         [HttpGet("categories")]
         public async Task<ActionResult<IEnumerable<Category>>> GetCategories()
@@ -51,6 +71,8 @@ namespace AdvWebFinal.Controllers
             return Ok(productCategories);
         }
 
-     
+       
+  
+
     }
 }

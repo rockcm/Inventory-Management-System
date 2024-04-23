@@ -1,8 +1,43 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "All products";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<h1>All products</h1>
+
+<p>
+    <a asp-action="Create" asp-controller="Product">Create New</a>
+</p>
+<table class="table">
+    <thead id="productHeading">
+        <tr>
+            <th>
+                ID
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                Purchase Price
+            </th>
+            <th>
+                Sell Price
+            </th>
+            <th>
+                Stock
+            </th>
+            <th>
+                Image
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody id="productTableBody">
+    </tbody>
+</table>
+
+@section Scripts {
+    <script src="~/js/homeIndex.js" type="module"></script>
+}
