@@ -1,4 +1,5 @@
 using AdvWebFinal.Models;
+using AdvWebFinal.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -7,15 +8,20 @@ namespace AdvWebFinal.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IProductRepository _productRepo;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IProductRepository productRepository)
         {
             _logger = logger;
+            _productRepo = productRepository;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var products = await _productRepo.ReadAllAsync();
+            var threeProducts = products.Take(3).ToList(); // Take only three products
+
+            return View(threeProducts);
         }
 
         public IActionResult Privacy()

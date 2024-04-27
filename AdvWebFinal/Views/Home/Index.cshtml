@@ -1,43 +1,50 @@
 ﻿@{
-    ViewData["Title"] = "All products";
+    ViewData["Title"] = "Home";
 }
 
-<h1>All products</h1>
+<div class="container text-center mt-5">
+    <h1>Welcome to Our Product Management System</h1>
+    <p class="lead">This is a simple product management system where you can add, view, edit, and delete products.</p>
+    <p>Click below to get started:</p>
+    <div class="btn-group mt-4" role="group">
+        <a asp-action="Index" class="btn btn-primary btn-lg">View Products</a>
+        <a asp-action="Create" class="btn btn-success btn-lg">Add New Product</a>
+    </div>
+</div>
 
-<p>
-    <a asp-action="Create" asp-controller="Product">Create New</a>
-</p>
-<table class="table">
-    <thead id="productHeading">
-        <tr>
-            <th>
-                ID
-            </th>
-            <th>
-                Name
-            </th>
-            <th>
-                Description
-            </th>
-            <th>
-                Purchase Price
-            </th>
-            <th>
-                Sell Price
-            </th>
-            <th>
-                Stock
-            </th>
-            <th>
-                Image
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody id="productTableBody">
-    </tbody>
-</table>
-
-@section Scripts {
-    <script src="~/js/homeIndex.js" type="module"></script>
-}
+<div class="container mt-5">
+    <h2 class="text-center">Product List</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Sell Price</th>
+                <th>Purchase Price</th>
+                <th>Stock</th>
+                <th>Image</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Name</td>
+                    <td>@item.Description</td>
+                    <td>@item.SellPrice</td>
+                    <td>@item.PurchasePrice</td>
+                    <td>@item.Stock</td>
+                    <td>
+                        <img src="@item.Image" alt="Product Image" style="max-width: 100px; max-height: 100px;" />
+                    </td>
+                    <td>
+                        <a asp-action="Details" asp-controller="Product" asp-route-id="@item.Id" class="btn btn-info btn-sm">Details</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
