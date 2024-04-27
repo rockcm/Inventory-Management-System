@@ -21,13 +21,7 @@ namespace AdvWebFinal.Services
             .ToListAsync();
         }
 
-        public async Task<ICollection<Product>> ReadAllAsync2()
-        {
-
-            return await _db.Products
-           
-            .ToListAsync();
-        }
+    
 
         public async Task<Product?> ReadAsync(int id)
         {
@@ -68,6 +62,19 @@ namespace AdvWebFinal.Services
 
             return existingProduct;
         }
+
+        public async Task DeleteAsync(int id)
+        {
+            var productToDelete = await ReadAsync(id);
+            
+            if (productToDelete != null)
+            {
+                _db.Products.Remove(productToDelete);
+                 await _db.SaveChangesAsync();
+            }
+         
+        }
+
 
     }
 }

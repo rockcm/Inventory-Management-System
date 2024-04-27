@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.CompilerServices;
+using System.Text.Json.Serialization;
 
 namespace AdvWebFinal.Models.Entities
 {
@@ -17,7 +18,8 @@ namespace AdvWebFinal.Models.Entities
         public int Stock {  get; set; }
 
         public string? Image { get; set; }
-
+        
+       
         public ICollection<ProductCategory> ProductCategory { get; set; } = new List<ProductCategory>();
     }
 }

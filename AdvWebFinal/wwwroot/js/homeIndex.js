@@ -35,3 +35,4 @@ function createTDWithLinks(id) {
     td.appendChild(domCreator.createTextLink(`/product/delete/${id}`, "Delete"));
     return td;
 }
+

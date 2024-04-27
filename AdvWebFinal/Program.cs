@@ -11,6 +11,11 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
       options.UseSqlServer(
         builder.Configuration.GetConnectionString("DefaultConnection")));
 
+builder.Services.AddControllers().AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+});
+
 builder.Services.AddScoped<IProductRepository, DbProductRepository>();
 builder.Services.AddScoped<ICategoryRepository, DbCategoryRepository>();
 builder.Services.AddScoped<IProductCategoryRepository, DbProductCategoryRepository>();
@@ -26,19 +31,6 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 {
     options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
 });
-
-builder.Services.AddCors(options =>
-{
-    options.AddDefaultPolicy(
-       builder =>
-       {
-           builder.WithOrigins(
-               "https://localhost:7095", "https://web.postman.co")
-                .AllowAnyHeader()
-                .AllowAnyMethod();
-       });
-});
-
 
 
 var app = builder.Build();

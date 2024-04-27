@@ -42,17 +42,7 @@ namespace AdvWebFinal.Controllers
         }
 
         // POST: Product/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Category category)
-        {
-            if (ModelState.IsValid)
-            {
-                await _categoryRepo.CreateAsync(category);
-                return RedirectToAction("Index", "category");
-            }
-            return View(category);
-        }
+     
 
 
 

@@ -1,12 +1,17 @@
 ﻿using AdvWebFinal.Models.Entities;
 using AdvWebFinal.Services;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Drawing;
 
 namespace AdvWebFinal.Controllers
 {
+    
     [ApiController]
     [Route("/[controller]")]
+   
     public class ApiController : ControllerBase
     {
         private readonly IProductRepository _productRepo;
@@ -21,13 +26,23 @@ namespace AdvWebFinal.Controllers
         }
 
         // Product CRUD operations
-
         [HttpGet("products")]
-        public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
+        public async Task<IActionResult> GetProductsAsync()
         {
-            var products = await _productRepo.ReadAllAsync();
-            return Ok(products);
+            try
+            {
+              var products = await _productRepo.ReadAllAsync();
+                return Ok(products);
+            }
+            catch (Exception ex)
+            {
+                // Log the exception
+                Console.WriteLine($"Error occurred while retrieving products: {ex.Message}");
+                return StatusCode(StatusCodes.Status500InternalServerError, "Internal server error");
+            }
         }
+
+
 
         [HttpGet("products/{id}")]
         public async Task<ActionResult<Product>> Get(int id)
@@ -46,6 +61,15 @@ namespace AdvWebFinal.Controllers
              await _productRepo.CreateAsync(product);
             return CreatedAtAction("Get", new { id = product.Id }, product);
         }
+
+        [HttpDelete("delete/{id}")]
+        public async Task Delete([FromForm] int id)
+        {
+           
+            await _productRepo.DeleteAsync(id);
+             NoContent(); // 204 as per HTTP specification
+        }
+
 
 
         [HttpPut("update")]
