@@ -33,16 +33,22 @@ namespace AdvWebFinal.Controllers
         }
 
      
+        //done with js
         public IActionResult Create()
         {
             return View();
         }
+
+        //done with js
 
         public IActionResult Update()
         {
             return View();
         }
 
+        /// <summary>
+        /// Delete action method 
+        /// </summary>
         public async Task<IActionResult> Delete(int id)
         {
             var product = await _productRepo.ReadAsync(id);
@@ -52,6 +58,10 @@ namespace AdvWebFinal.Controllers
             }
             return View(product);
         }
+
+        /// <summary>
+        /// Delete post action method 
+        /// </summary>
         [HttpPost, ActionName("Delete")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
