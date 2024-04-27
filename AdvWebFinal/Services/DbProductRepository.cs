@@ -65,7 +65,7 @@ namespace AdvWebFinal.Services
 
         public async Task DeleteAsync(int id)
         {
-            var productToDelete = await ReadAsync(id);
+            Product? productToDelete = await ReadAsync(id);
             
             if (productToDelete != null)
             {

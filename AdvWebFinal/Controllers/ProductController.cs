@@ -43,11 +43,22 @@ namespace AdvWebFinal.Controllers
             return View();
         }
 
-        public IActionResult Delete()
+        public async Task<IActionResult> Delete(int id)
         {
-            return View();
+            var product = await _productRepo.ReadAsync(id);
+            if (product == null)
+            {
+                return RedirectToAction("Index");
+            }
+            return View(product);
         }
-    
+        [HttpPost, ActionName("Delete")]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            await _productRepo.DeleteAsync(id);
+            return RedirectToAction("Index");
+        }
+
 
     }
 }
