@@ -20,6 +20,18 @@ builder.Services.AddScoped<IProductRepository, DbProductRepository>();
 builder.Services.AddScoped<ICategoryRepository, DbCategoryRepository>();
 builder.Services.AddScoped<IProductCategoryRepository, DbProductCategoryRepository>();
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAllOrigins",
+        builder =>
+        {
+            builder.AllowAnyOrigin()
+                   .AllowAnyMethod()
+                   .AllowAnyHeader();
+        });
+});
+
+
 builder.Services.AddControllersWithViews()
     .AddJsonOptions(options =>
     {
@@ -44,6 +56,7 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+app.UseCors("AllowAllOrigins");
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 

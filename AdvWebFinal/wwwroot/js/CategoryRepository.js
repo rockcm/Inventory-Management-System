@@ -1,36 +1,36 @@
 ﻿"use strict";
-export class ProductRepository {
+export class CategoryRepository {
     #baseAddress;
     constructor(baseAddress) {
         this.#baseAddress = baseAddress;
     }
 
     async readAll() {
-        const address = `${this.#baseAddress}/products`;
+        const address = `${this.#baseAddress}/categories`;
         const response = await fetch(address);
         if (!response.ok) {
-            throw new Error("There was an HTTP error getting the category data.");
+            throw new Error("There was an HTTP error getting the product data.");
         }
         return await response.json();
     }
 
     async read(id) {
-        const address = `${this.#baseAddress}/products/${id}`;
+        const address = `${this.#baseAddress}/categories/${id}`;
         const response = await fetch(address);
         if (!response.ok) {
-            throw new Error("There was an HTTP error getting the category data.");
+            throw new Error("There was an HTTP error getting the product data.");
         }
         return await response.json();
     }
 
     async create(formData) {
-        const address = `${this.#baseAddress}/createproduct`;
+        const address = `${this.#baseAddress}/createcategory`;
         const response = await fetch(address, {
             method: "post",
             body: formData
         });
         if (!response.ok) {
-            throw new Error("There was an HTTP error creating the category data.");
+            throw new Error("There was an HTTP error creating the product data.");
         }
         return await response.json();
     }
@@ -42,18 +42,18 @@ export class ProductRepository {
             body: formData
         });
         if (!response.ok) {
-            throw new Error("There was an HTTP error updating the category data.");
+            throw new Error("There was an HTTP error updating the product data.");
         }
         return await response.text();
     }
 
     async delete(id) {
-        const address = `${this.#baseAddress}/product/delete/${id}`;
+        const address = `${this.#baseAddress}/delete/${id}`;
         const response = await fetch(address, {
             method: "delete"
         });
         if (!response.ok) {
-            throw new Error("There was an HTTP error deleting the category data.");
+            throw new Error("There was an HTTP error deleting the product data.");
         }
         return await response.text();
     }

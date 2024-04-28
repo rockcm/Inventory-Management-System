@@ -8,7 +8,7 @@ using System.Drawing;
 
 namespace AdvWebFinal.Controllers
 {
-    
+  
     [ApiController]
     [Route("/[controller]")]
    
@@ -62,7 +62,7 @@ namespace AdvWebFinal.Controllers
             return CreatedAtAction("Get", new { id = product.Id }, product);
         }
 
-        [HttpDelete("delete/{id}")]
+        [HttpDelete("product/delete/{id}")]
         public async Task Delete([FromForm] int id)
         {
            
@@ -95,8 +95,13 @@ namespace AdvWebFinal.Controllers
             return Ok(productCategories);
         }
 
-       
-  
+
+        [HttpPost("createcategory")]
+        public async Task<IActionResult> Post([FromForm] Category category)
+        {
+            await _categoryRepo.CreateAsync(category);
+            return CreatedAtAction("Get", new { id = category.Id }, category);
+        }
 
     }
 }
