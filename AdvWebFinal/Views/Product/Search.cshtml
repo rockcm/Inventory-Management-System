@@ -1,0 +1,31 @@
+﻿@model List<Product>
+
+@{
+    ViewData["Title"] = "Search Products";
+}
+
+<h3>Search Products</h3>
+
+<form asp-action="Search" method="get">
+    <div class="form-group">
+        <label for="searchTerm">Search Product:</label>
+        <input type="text" id="searchTerm" name="searchTerm" class="form-control" value="@ViewBag.SearchTerm" />
+        <button type="submit" class="btn btn-primary">Search</button>
+    </div>
+</form>
+
+<div>
+    <h4>Search Results:</h4>
+    <ul>
+        @foreach (var product in Model)
+        {
+            <li>
+                <p>ID: @product.Id</p>
+                <p>Name: @product.Name</p>
+                <p>Description: @product.Description</p>
+                <p>Price: @product.SellPrice</p>
+                <p><img src="@product.Image" alt="Product Image" class="img-thumbnail" /></p>
+            </li>
+        }
+    </ul>
+</div>

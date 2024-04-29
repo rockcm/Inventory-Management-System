@@ -7,6 +7,8 @@ namespace AdvWebFinal.Models.Entities
 {
     public class Product
     {
+
+
         public int Id { get; set; }
         public string? Name { get; set; }
         [StringLength(200)]
@@ -18,8 +20,11 @@ namespace AdvWebFinal.Models.Entities
         public int Stock {  get; set; }
 
         public string? Image { get; set; }
-        
-       
-        public ICollection<ProductCategory> ProductCategory { get; set; } = new List<ProductCategory>();
+
+		[JsonIgnore]
+		public ICollection<ProductCategory> ProductCategory { get; set; } = new List<ProductCategory>();
+
+
+
     }
 }

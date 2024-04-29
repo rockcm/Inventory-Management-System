@@ -7,7 +7,7 @@ namespace AdvWebFinal.Models.Entities
         public int Id { get; set; }
         public string? Name { get; set; }
 
-       
+        [JsonIgnore]
         public ICollection<ProductCategory> CategoryProduct { get; set; } = new List<ProductCategory>();
 
     }

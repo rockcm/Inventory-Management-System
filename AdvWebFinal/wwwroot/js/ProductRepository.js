@@ -9,7 +9,7 @@ export class ProductRepository {
         const address = `${this.#baseAddress}/products`;
         const response = await fetch(address);
         if (!response.ok) {
-            throw new Error("There was an HTTP error getting the category data.");
+            throw new Error("There was an HTTP error getting the product data.");
         }
         return await response.json();
     }

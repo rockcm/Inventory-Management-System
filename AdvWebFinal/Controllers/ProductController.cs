@@ -69,6 +69,20 @@ namespace AdvWebFinal.Controllers
             return RedirectToAction("Index");
         }
 
+        public async Task<IActionResult> Search(string searchTerm)
+        {
+            if (string.IsNullOrEmpty(searchTerm))
+            {
+                ViewBag.SearchTerm = searchTerm;
+                return View(new List<Product>()); // Return an empty list if search term is empty
+            }
 
+            // Call the SearchProductsAsync method from the ProductRepository
+            var searchResults = await _productRepo.SearchProductsAsync(searchTerm);
+            ViewBag.SearchTerm = searchTerm;
+            return View(searchResults); // Return the search results to the view
+        }
+
+     
     }
 }

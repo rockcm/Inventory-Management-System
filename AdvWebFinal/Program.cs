@@ -11,10 +11,6 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
       options.UseSqlServer(
         builder.Configuration.GetConnectionString("DefaultConnection")));
 
-builder.Services.AddControllers().AddJsonOptions(options =>
-{
-    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
-});
 
 builder.Services.AddScoped<IProductRepository, DbProductRepository>();
 builder.Services.AddScoped<ICategoryRepository, DbCategoryRepository>();
@@ -32,6 +28,9 @@ builder.Services.AddCors(options =>
 });
 
 
+
+
+
 builder.Services.AddControllersWithViews()
     .AddJsonOptions(options =>
     {
@@ -39,10 +38,6 @@ builder.Services.AddControllersWithViews()
     });
 
 
-builder.Services.AddControllers().AddJsonOptions(options =>
-{
-    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
-});
 
 
 var app = builder.Build();
@@ -72,3 +67,5 @@ app.MapControllerRoute(
 
 
 app.Run();
+
+

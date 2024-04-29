@@ -1,7 +1,10 @@
-﻿namespace AdvWebFinal.Models.Entities
+﻿using System.Text.Json.Serialization;
+
+namespace AdvWebFinal.Models.Entities
 {
     public class ProductCategory
     {
+        [JsonIgnore]
         public int Id { get; set; }
 
         public Product Product { get; set; }

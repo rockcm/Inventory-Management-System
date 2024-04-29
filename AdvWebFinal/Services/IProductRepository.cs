@@ -1,4 +1,5 @@
 ﻿using AdvWebFinal.Models.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace AdvWebFinal.Services
 {
@@ -11,5 +12,11 @@ namespace AdvWebFinal.Services
         Task<Product> UpdateAsync(Product product);
 
         Task DeleteAsync(int id);
+
+        Task<List<Product>> SearchProductsAsync(string searchTerm);
+
+        Task<List<(Category category, List<Product> products)>> GetProductsByCategoryAsync();
+
+
     }
 }

@@ -14,14 +14,33 @@ namespace AdvWebFinal.Services
         }
         public async Task<ICollection<Product>> ReadAllAsync()
         {
-            
-            return await _db.Products
-            .Include(p => p.ProductCategory)
-            .ThenInclude(pc => pc.Category)
-            .ToListAsync();
-        }
+            var products = await _db.Products
+                .Include(p => p.ProductCategory)
+                    .ThenInclude(pc => pc.Category)
+                .ToListAsync();
 
-    
+            // Manually flatten the query result
+            return products.Select(p => new Product
+            {
+                Id = p.Id,
+                Name = p.Name,
+                Description = p.Description,
+                SellPrice = p.SellPrice,
+                PurchasePrice = p.PurchasePrice,
+                Stock = p.Stock,
+                Image = p.Image,
+                ProductCategory = p.ProductCategory.Select(pc => new ProductCategory
+                {
+                    CategoryId = pc.CategoryId,
+                    Category = new Category
+                    {
+                        Id = pc.Category.Id,
+                        Name = pc.Category.Name
+                        // Include other Category properties if needed
+                    }
+                }).ToList()
+            }).ToList();
+        }
 
         public async Task<Product?> ReadAsync(int id)
         {
@@ -75,6 +94,25 @@ namespace AdvWebFinal.Services
          
         }
 
+        public async Task<List<Product>> SearchProductsAsync(string searchTerm)
+        {
+            return await _db.Products
+                .Where(p => p.Name.Contains(searchTerm) || p.Description.Contains(searchTerm))
+                .ToListAsync();
+        }
+
+        public async Task<List<(Category category, List<Product> products)>> GetProductsByCategoryAsync()
+        {
+            var categoriesWithProducts = await _db.Categories
+                .Select(category => new
+                {
+                    category,
+                    products = category.CategoryProduct.Select(pc => pc.Product).ToList()
+                })
+                .ToListAsync();
+
+            return categoriesWithProducts.Select(cwp => (cwp.category, cwp.products)).ToList();
+        }
 
     }
 }
