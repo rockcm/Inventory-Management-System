@@ -65,7 +65,7 @@ namespace AdvWebFinal.Controllers
         [HttpPost, ActionName("Delete")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            await _productRepo.DeleteAsync(id);
+           // await _productRepo.DeleteAsync(id);
             return RedirectToAction("Index");
         }
 

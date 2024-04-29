@@ -11,7 +11,7 @@ namespace AdvWebFinal.Services
         Task<Product> CreateAsync(Product product);
         Task<Product> UpdateAsync(Product product);
 
-        Task DeleteAsync(int id);
+        Task DeleteAsync(Product prod);
 
         Task<List<Product>> SearchProductsAsync(string searchTerm);
 

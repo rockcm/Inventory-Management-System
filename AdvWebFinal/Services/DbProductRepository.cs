@@ -81,17 +81,10 @@ namespace AdvWebFinal.Services
 
             return existingProduct;
         }
-
-        public async Task DeleteAsync(int id)
+        public async Task DeleteAsync(Product product)
         {
-            Product? productToDelete = await ReadAsync(id);
-            
-            if (productToDelete != null)
-            {
-                _db.Products.Remove(productToDelete);
-                 await _db.SaveChangesAsync();
-            }
-         
+            _db.Products.Remove(product);
+            await _db.SaveChangesAsync();
         }
 
         public async Task<List<Product>> SearchProductsAsync(string searchTerm)

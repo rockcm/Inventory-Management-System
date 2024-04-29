@@ -62,14 +62,21 @@ namespace AdvWebFinal.Controllers
             return CreatedAtAction("Get", new { id = product.Id }, product);
         }
 
-        [HttpDelete("product/delete/{id}")]
-        public async Task Delete([FromForm] int id)
-        {
-           
-            await _productRepo.DeleteAsync(id);
-             NoContent(); // 204 as per HTTP specification
-        }
 
+        [HttpDelete("product/delete/{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var productToDelete = await _productRepo.ReadAsync(id);
+
+            if (productToDelete == null)
+            {
+                return NotFound(); // Return 404 if product not found
+            }
+
+            await _productRepo.DeleteAsync(productToDelete);
+
+            return NoContent(); // Return 204 as per HTTP specification
+        }
 
 
         [HttpPut("update")]
