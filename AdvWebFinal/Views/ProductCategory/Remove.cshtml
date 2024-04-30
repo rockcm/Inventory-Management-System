@@ -11,7 +11,7 @@
 <h3>@question</h3>
 <div>
     <form asp-action="Remove" id="formRemove">
-        <input type="hidden" name="studentCourseId" value="@Model!.Id" />
+        <input type="hidden" name="catId" value="@cat!.Id" />
         <input type="hidden" name="prodId" value="@product!.Id" />
         <input type="submit" value="Yes, Remove Category" class="btn btn-danger" /> |
         <a asp-action="Details" asp-controller="Product" asp-route-id="@product!.Id">

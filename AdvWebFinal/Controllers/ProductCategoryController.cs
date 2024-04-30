@@ -66,8 +66,9 @@ namespace AdvWebFinal.Controllers
             return RedirectToAction("Details", "Product", new { id = productId });
         }
 
+
 		public async Task<IActionResult> Remove(
-	   [Bind(Prefix = "id")] int prodId, int catId)
+	   int prodId, int catId)
 		{
 			var product = await _productRepo.ReadAsync(prodId);
 			if (product == null)

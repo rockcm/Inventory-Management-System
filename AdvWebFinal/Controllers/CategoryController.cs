@@ -17,7 +17,7 @@ namespace AdvWebFinal.Controllers
 
         public async Task<IActionResult> Index()
         {
-            return View(await _categoryRepo.ReadAllAsync());
+            return View();
         }
 
         public async Task<IActionResult> AddCategory(

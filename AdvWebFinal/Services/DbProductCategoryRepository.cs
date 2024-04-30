@@ -79,11 +79,13 @@ namespace AdvWebFinal.Services
 			var product = await _productRepo.ReadAsync(prodId);
 			var prodCat = product!.ProductCategory
 				.FirstOrDefault(pc => pc.Id == prodCatId);
-			var course = prodCat!.Category;
+			var cat = prodCat!.Category;
 			product!.ProductCategory.Remove(prodCat);
-			course!.CategoryProduct.Remove(prodCat);
+			cat!.CategoryProduct.Remove(prodCat);
 			await _db.SaveChangesAsync();
 		}
+
+		
 
 
 	}

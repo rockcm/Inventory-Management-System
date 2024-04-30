@@ -18,5 +18,8 @@ namespace AdvWebFinal.Services
         Task<List<(Category category, List<Product> products)>> GetProductsByCategoryAsync();
 
 
-    }
+        Task RemoveCategoryFromProductAsync(int productId, int categoryId);
+		
+
+	}
 }

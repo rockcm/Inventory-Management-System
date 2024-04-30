@@ -1,38 +1,30 @@
-﻿@model IEnumerable<AdvWebFinal.Models.Entities.Category>
-
-@{
-    ViewData["Title"] = "Index";
+﻿@{
+	ViewData["Title"] = "All Categories";
 }
+<h1>@ViewData["Title"]</h1>
 
-<h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+	<a asp-action="Create" asp-controller="Category">Create New</a>
 </p>
 <table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Id)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-           
-             
-        </tr>
-}
-    </tbody>
+	<thead>
+		<tr>
+			<th>
+				Id
+			</th>
+			<th>
+				Name
+			</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody id="categoryTableBody">
+	</tbody>
 </table>
+
+
+
+@section Scripts {
+	<script src="~/js/categoryIndex.js" type="module"></script>
+}

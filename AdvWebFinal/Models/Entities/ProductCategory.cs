@@ -4,7 +4,7 @@ namespace AdvWebFinal.Models.Entities
 {
     public class ProductCategory
     {
-        [JsonIgnore]
+       
         public int Id { get; set; }
 
         public Product Product { get; set; }

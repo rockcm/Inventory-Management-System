@@ -107,5 +107,19 @@ namespace AdvWebFinal.Services
             return categoriesWithProducts.Select(cwp => (cwp.category, cwp.products)).ToList();
         }
 
-    }
+		public async Task RemoveCategoryFromProductAsync(int productId, int categoryId)
+		{
+			var product = await _db.Products.FindAsync(productId);
+			if (product != null)
+			{
+				var productCategory = product.ProductCategory.FirstOrDefault(pc => pc.CategoryId == categoryId);
+				if (productCategory != null)
+				{
+					product.ProductCategory.Remove(productCategory);
+					await _db.SaveChangesAsync();
+				}
+			}
+		}
+
+	}
 }
