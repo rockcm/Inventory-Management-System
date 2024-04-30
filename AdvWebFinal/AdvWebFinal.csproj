@@ -8,16 +8,19 @@
 
   <ItemGroup>
     <Content Remove="wwwroot\js\productCreate.js" />
+    <Content Remove="wwwroot\js\productDetails.js" />
     <Content Remove="wwwroot\js\productUpdate.js" />
   </ItemGroup>
 
   <ItemGroup>
     <_ContentIncludedByDefault Remove="wwwroot\js\productCreate.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\js\productDetails.js" />
     <_ContentIncludedByDefault Remove="wwwroot\js\productUpdate.js" />
   </ItemGroup>
 
   <ItemGroup>
     <None Include="wwwroot\js\productCreate.js" />
+    <None Include="wwwroot\js\productDetails.js" />
     <None Include="wwwroot\js\productUpdate.js" />
   </ItemGroup>
 

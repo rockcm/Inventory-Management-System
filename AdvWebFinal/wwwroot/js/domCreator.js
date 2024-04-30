@@ -29,8 +29,10 @@ export class DOMCreator {
 
     createImg(src, alt) {
         const img = document.createElement("img");
-        img.setAttribute("src", src);
+        img.setAttribute("src", src); // Set the src attribute to the image URL
         img.setAttribute("alt", alt);
+        img.style.width = "100px"; // Optionally, set width and height
+        img.style.height = "100px";
         return img;
     }
 
