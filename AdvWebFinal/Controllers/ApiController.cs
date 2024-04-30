@@ -110,5 +110,7 @@ namespace AdvWebFinal.Controllers
             return CreatedAtAction("Get", new { id = category.Id }, category);
         }
 
-    }
+		
+
+	}
 }

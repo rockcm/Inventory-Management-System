@@ -1,0 +1,25 @@
+﻿@model AdvWebFinal.Models.Entities.ProductCategory
+
+@{
+    var product = Model!.Product;
+    var cat = Model!.Category;
+    ViewData["Title"] = "Please confirm removing course";
+    var question = $"Are you sure you want to remove {cat!.Name} " +
+        $"from {product!.Name}?";
+}
+<h2>@ViewData["Title"]</h2>
+<h3>@question</h3>
+<div>
+    <form asp-action="Remove" id="formRemove">
+        <input type="hidden" name="studentCourseId" value="@Model!.Id" />
+        <input type="hidden" name="prodId" value="@product!.Id" />
+        <input type="submit" value="Yes, Remove Category" class="btn btn-danger" /> |
+        <a asp-action="Details" asp-controller="Product" asp-route-id="@product!.Id">
+            Back to Product Details
+        </a>
+    </form>
+</div>
+
+@section Scripts {
+    @*<script defer type="module" src="~/js/studentCourseRemove.js"></script>*@
+}

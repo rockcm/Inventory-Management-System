@@ -1,4 +1,18 @@
-﻿using AdvWebFinal.Models.Entities;
+﻿////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////
+//
+// Project: Inventory Management System
+// File Name: ProductController.CS
+// Description: Product controller class that provides views for the product pages. 
+// Course: CSCI 3110 - Advance Web Development
+// Author: Christian Rock
+// Created: 04/17/24
+// Copyright: Christian Rock, 2024
+//
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////
+
+using AdvWebFinal.Models.Entities;
 using AdvWebFinal.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -33,54 +47,38 @@ namespace AdvWebFinal.Controllers
         }
 
      
-        //done with js
+       
         public IActionResult Create()
         {
             return View();
         }
 
-        //done with js
+       
 
         public IActionResult Update()
         {
             return View();
         }
 
-        /// <summary>
-        /// Delete action method 
-        /// </summary>
+       
         public async Task<IActionResult> Delete(int id)
         {
-            var product = await _productRepo.ReadAsync(id);
-            if (product == null)
-            {
-                return RedirectToAction("Index");
-            }
-            return View(product);
+            return View();
         }
 
-        /// <summary>
-        /// Delete post action method 
-        /// </summary>
-        [HttpPost, ActionName("Delete")]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-           // await _productRepo.DeleteAsync(id);
-            return RedirectToAction("Index");
-        }
 
         public async Task<IActionResult> Search(string searchTerm)
         {
             if (string.IsNullOrEmpty(searchTerm))
             {
                 ViewBag.SearchTerm = searchTerm;
-                return View(new List<Product>()); // Return an empty list if search term is empty
+                return View(new List<Product>()); // Returns an empty list if search term is empty
             }
 
-            // Call the SearchProductsAsync method from the ProductRepository
+            // Call the Search method from the ProductRepository
             var searchResults = await _productRepo.SearchProductsAsync(searchTerm);
             ViewBag.SearchTerm = searchTerm;
-            return View(searchResults); // Return the search results to the view
+            return View(searchResults); // Returns the search results to the view
         }
 
      

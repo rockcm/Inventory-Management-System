@@ -34,45 +34,59 @@ namespace AdvWebFinal.Services
 
         public async Task<ProductCategory> CreateAsync(int productId, int categoryId)
         {
-            // Retrieve the product and category
+            
             var product = await _productRepo.ReadAsync(productId);
             if (product == null)
             {
-                // The product was not found
+                
                 return null;
             }
 
             var category = await _categoryRepo.ReadAsync(categoryId);
             if (category == null)
             {
-                // The category was not found
+           
                 return null;
             }
 
-            // Check if the product already has the category assigned
+         
             var existingProductCategory = product.ProductCategory.FirstOrDefault(pc => pc.CategoryId == categoryId);
             if (existingProductCategory != null)
             {
-                // The product already has the category assigned
+              
                 return null;
             }
 
-            // Create a new ProductCategory instance
+           
             var productCategory = new ProductCategory
             {
                 Product = product,
                 Category = category
             };
 
-            // Add the product category to the product and category collections
+            
             product.ProductCategory.Add(productCategory);
             category.CategoryProduct.Add(productCategory);
 
-            // Save changes to the database
+          
             await _db.SaveChangesAsync();
 
             return productCategory;
         }
 
-    }
+		public async Task RemoveAsync(int prodId, int prodCatId)
+		{
+			var product = await _productRepo.ReadAsync(prodId);
+			var prodCat = product!.ProductCategory
+				.FirstOrDefault(pc => pc.Id == prodCatId);
+			var course = prodCat!.Category;
+			product!.ProductCategory.Remove(prodCat);
+			course!.CategoryProduct.Remove(prodCat);
+			await _db.SaveChangesAsync();
+		}
+
+
+	}
+
+
 }

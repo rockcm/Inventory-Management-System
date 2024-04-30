@@ -2,14 +2,21 @@
 	ViewData["Title"] = "All Products";
 }
 <h1>@ViewData["Title"]</h1>
+
+<style>
+	.table img {
+		width: 100px; /* Set the width to the desired size */
+		height: auto; /* Maintain aspect ratio */
+	}</style>
+
 <p>
-	<a asp-action="Create">Create New</a>
+	<a asp-action="Create" asp-controller="Product">Create New</a>
 </p>
 <table class="table">
 	<thead>
 		<tr>
 			<th>
-				id
+				Id
 			</th>
 			<th>
 				Name

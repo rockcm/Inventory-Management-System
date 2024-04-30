@@ -34,9 +34,9 @@ namespace AdvWebFinal.Services
                     CategoryId = pc.CategoryId,
                     Category = new Category
                     {
-                        Id = pc.Category.Id,
+                        
                         Name = pc.Category.Name
-                        // Include other Category properties if needed
+                       
                     }
                 }).ToList()
             }).ToList();

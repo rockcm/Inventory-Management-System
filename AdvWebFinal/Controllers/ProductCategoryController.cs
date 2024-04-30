@@ -66,6 +66,32 @@ namespace AdvWebFinal.Controllers
             return RedirectToAction("Details", "Product", new { id = productId });
         }
 
-     
-    }
+		public async Task<IActionResult> Remove(
+	   [Bind(Prefix = "id")] int prodId, int catId)
+		{
+			var product = await _productRepo.ReadAsync(prodId);
+			if (product == null)
+			{
+				return RedirectToAction("Index", "Product");
+			}
+			var prodCat = product.ProductCategory
+				.FirstOrDefault(pc => pc.CategoryId == catId);
+			if (prodCat == null)
+			{
+				return RedirectToAction("Details", "Product", new { id = prodId });
+			}
+			return View(prodCat);
+		}
+
+		[HttpPost, ValidateAntiForgeryToken, ActionName("Remove")]
+		public async Task<IActionResult> RemoveConfirmed(
+			int prodId, int catId)
+		{
+			await _productCategoryRepo.RemoveAsync(prodId, catId);
+			return RedirectToAction("Details", "Product", new { id = prodId });
+		}
+
+
+
+	}
 }

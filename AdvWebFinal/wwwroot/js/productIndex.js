@@ -23,7 +23,7 @@ function createproductTR(product) {
     tr.appendChild(domCreator.createTextTD(product.stock));
     tr.appendChild(domCreator.createImageTD(product.image));
     tr.appendChild(createTDWithLinks(product.id));
-   
+
     return tr;
 }
 function createTDWithLinks(id) {

@@ -19,9 +19,9 @@ namespace AdvWebFinal.Controllers
         public async Task<IActionResult> Index()
         {
             var products = await _productRepo.ReadAllAsync();
-            var threeProducts = products.Take(3).ToList(); // Take only three products
+            
 
-            return View(threeProducts);
+            return View(products);
         }
 
         public IActionResult Privacy()

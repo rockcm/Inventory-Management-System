@@ -18,6 +18,11 @@ export class DOMCreator {
     createImageTD(src, alt) {
         const td = document.createElement("td");
         const img = this.createImg(src, alt);
+
+        // Set the width and height of the image to 100 pixels
+        img.style.width = "100px";
+        img.style.height = "100px";
+
         td.appendChild(img);
         return td;
     }
