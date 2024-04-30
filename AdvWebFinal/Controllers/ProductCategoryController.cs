@@ -68,28 +68,28 @@ namespace AdvWebFinal.Controllers
 
 
 		public async Task<IActionResult> Remove(
-	   int prodId, int catId)
+	   int productId, int categoryId)
 		{
-			var product = await _productRepo.ReadAsync(prodId);
+			var product = await _productRepo.ReadAsync(productId);
 			if (product == null)
 			{
 				return RedirectToAction("Index", "Product");
 			}
 			var prodCat = product.ProductCategory
-				.FirstOrDefault(pc => pc.CategoryId == catId);
+				.FirstOrDefault(pc => pc.CategoryId == categoryId);
 			if (prodCat == null)
 			{
-				return RedirectToAction("Details", "Product", new { id = prodId });
+				return RedirectToAction("Details", "Product", new { id = productId });
 			}
 			return View(prodCat);
 		}
 
 		[HttpPost, ValidateAntiForgeryToken, ActionName("Remove")]
 		public async Task<IActionResult> RemoveConfirmed(
-			int prodId, int catId)
+			int productId, int categoryId)
 		{
-			await _productCategoryRepo.RemoveAsync(prodId, catId);
-			return RedirectToAction("Details", "Product", new { id = prodId });
+			await _productCategoryRepo.RemoveAsync(productId, categoryId);
+			return RedirectToAction("Details", "Product", new { id = productId });
 		}
 
 

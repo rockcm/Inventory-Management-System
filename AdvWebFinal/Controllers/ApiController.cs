@@ -139,24 +139,9 @@ namespace AdvWebFinal.Controllers
         }
 
 
-        //unfinished 
-		[HttpDelete("products/{productId}/categories/{categoryId}")]
-		public async Task<IActionResult> RemoveCategoryFromProductAsync(int productId, int categoryId)
-		{
-			try
-			{
-				await _productRepo.RemoveCategoryFromProductAsync(productId, categoryId);
-				return NoContent();
-			}
-			catch (Exception ex)
-			{
-				
-				Console.WriteLine($"Error occurred while removing category from product: {ex.Message}");
-				return StatusCode(StatusCodes.Status500InternalServerError, "Internal server error");
-			}
-		}
+        
 
 
 
-	}
+    }
 }

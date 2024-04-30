@@ -1,0 +1,106 @@
+﻿@model AdvWebFinal.Models.Entities.Product
+
+@{
+    ViewData["Title"] = "DetailsPlus";
+}
+
+<h1>DetailsPlus</h1>
+
+<div>
+    <h4>Product</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.SellPrice)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SellPrice)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PurchasePrice)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PurchasePrice)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Stock)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Stock)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Image)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Image)
+        </dd>
+    </dl>
+
+   
+</div>
+
+
+<h3>Registered Categories</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Id
+            </th>
+            <th>
+               Name
+            </th>
+           
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null)
+        {
+            @foreach (var item in Model.ProductCategory)
+            {
+                <tr>
+                    <td>
+                        @item.Category!.Id
+                    </td>
+                    <td>
+                        @item.Category!.Name
+                    </td>
+                   
+                    <td>
+
+                        <a asp-action="remove" asp-controller="ProductCategory"
+                           asp-route-productId="@Model!.Id" asp-route-categoryId="@item.Category.Id">
+                            Remove category
+                        </a>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+<div>
+
+
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    <a asp-action="Index">Back to List</a>
+</div>

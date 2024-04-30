@@ -48,7 +48,6 @@ namespace AdvWebFinal.Services
            
                 return null;
             }
-
          
             var existingProductCategory = product.ProductCategory.FirstOrDefault(pc => pc.CategoryId == categoryId);
             if (existingProductCategory != null)
@@ -56,15 +55,13 @@ namespace AdvWebFinal.Services
               
                 return null;
             }
-
-           
+    
             var productCategory = new ProductCategory
             {
                 Product = product,
                 Category = category
             };
-
-            
+    
             product.ProductCategory.Add(productCategory);
             category.CategoryProduct.Add(productCategory);
 
@@ -74,21 +71,29 @@ namespace AdvWebFinal.Services
             return productCategory;
         }
 
-		public async Task RemoveAsync(int prodId, int prodCatId)
-		{
-			var product = await _productRepo.ReadAsync(prodId);
-			var prodCat = product!.ProductCategory
-				.FirstOrDefault(pc => pc.Id == prodCatId);
-			var cat = prodCat!.Category;
-			product!.ProductCategory.Remove(prodCat);
-			cat!.CategoryProduct.Remove(prodCat);
-			await _db.SaveChangesAsync();
-		}
+        public async Task RemoveAsync(int prodId, int CatId)
+        {
+            var product = await _productRepo.ReadAsync(prodId);
 
-		
+            var prodCat = await _db.ProductCategories
+                .Include(pc => pc.Category)
+                .FirstOrDefaultAsync(pc => pc.ProductId == prodId && pc.CategoryId == CatId); 
+
+            if (prodCat == null)
+            {
+                throw new Exception($"ProductCategory with product ID {prodId} and category ID {CatId} not found.");
+            }
+
+            var cat = prodCat.Category;
+
+            product.ProductCategory.Remove(prodCat);
+            cat.CategoryProduct.Remove(prodCat);
+
+            await _db.SaveChangesAsync();
+        }
 
 
-	}
+    }
 
 
 }
