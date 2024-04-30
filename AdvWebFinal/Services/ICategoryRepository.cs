@@ -9,5 +9,6 @@ namespace AdvWebFinal.Services
         Task<Category?> ReadAsync(int id);
         Task<Category> CreateAsync(Category category);
 
+        Task DeleteAsync(Category category);
     }
 }

@@ -37,6 +37,11 @@ namespace AdvWebFinal.Services
             return category;
         }
 
+        public async Task DeleteAsync(Category category)
+        {
+            _db.Categories.Remove(category);
+            await _db.SaveChangesAsync();
+        }
 
 
     }

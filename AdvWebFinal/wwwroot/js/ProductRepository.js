@@ -18,7 +18,7 @@ export class ProductRepository {
         const address = `${this.#baseAddress}/products/${id}`;
         const response = await fetch(address);
         if (!response.ok) {
-            throw new Error("There was an HTTP error getting the category data.");
+            throw new Error("There was an HTTP error getting the product data.");
         }
         return await response.json();
     }
@@ -30,7 +30,7 @@ export class ProductRepository {
             body: formData
         });
         if (!response.ok) {
-            throw new Error("There was an HTTP error creating the category data.");
+            throw new Error("There was an HTTP error creating the product data.");
         }
         return await response.json();
     }
@@ -42,7 +42,7 @@ export class ProductRepository {
             body: formData
         });
         if (!response.ok) {
-            throw new Error("There was an HTTP error updating the category data.");
+            throw new Error("There was an HTTP error updating the product data.");
         }
         return await response.text();
     }
@@ -53,7 +53,7 @@ export class ProductRepository {
             method: "delete"
         });
         if (!response.ok) {
-            throw new Error("There was an HTTP error deleting the category data.");
+            throw new Error("There was an HTTP error deleting the product data.");
         }
         return await response.text();
     }

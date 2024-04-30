@@ -94,7 +94,35 @@ namespace AdvWebFinal.Controllers
             return Ok(categories);
         }
 
-     
+        [HttpGet("categories/{id}")]
+        public async Task<ActionResult<Product>> GetCat(int id)
+        {
+            var cat = await _categoryRepo.ReadAsync(id);
+            if (cat == null)
+            {
+                return NotFound();
+            }
+            return Ok(cat);
+        }
+
+
+        [HttpDelete("category/delete/{id}")]
+        public async Task<IActionResult> DeleteCat(int id)
+        {
+            var catToDelete = await _categoryRepo.ReadAsync(id);
+
+            if (catToDelete == null)
+            {
+                return NotFound(); // Return 404 if product not found
+            }
+
+            await _categoryRepo.DeleteAsync(catToDelete);
+
+            return NoContent(); // Return 204 as per HTTP specification
+        }
+
+
+
         [HttpGet("productcategories")]
         public async Task<ActionResult<IEnumerable<ProductCategory>>> GetProductCategories()
         {
@@ -110,6 +138,8 @@ namespace AdvWebFinal.Controllers
             return CreatedAtAction("Get", new { id = category.Id }, category);
         }
 
+
+        //unfinished 
 		[HttpDelete("products/{productId}/categories/{categoryId}")]
 		public async Task<IActionResult> RemoveCategoryFromProductAsync(int productId, int categoryId)
 		{
@@ -120,7 +150,7 @@ namespace AdvWebFinal.Controllers
 			}
 			catch (Exception ex)
 			{
-				// Log the exception
+				
 				Console.WriteLine($"Error occurred while removing category from product: {ex.Message}");
 				return StatusCode(StatusCodes.Status500InternalServerError, "Internal server error");
 			}

@@ -20,6 +20,13 @@ namespace AdvWebFinal.Controllers
             return View();
         }
 
+
+        public async Task<IActionResult> DeleteCat(int id)
+        {
+            return View();
+        }
+
+
         public async Task<IActionResult> AddCategory(
         [Bind(Prefix = "id")] int productId)
         {

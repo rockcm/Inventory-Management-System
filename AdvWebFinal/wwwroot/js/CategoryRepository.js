@@ -9,7 +9,7 @@ export class CategoryRepository {
         const address = `${this.#baseAddress}/categories`;
         const response = await fetch(address);
         if (!response.ok) {
-            throw new Error("There was an HTTP error getting the product data.");
+            throw new Error("There was an HTTP error getting the cat data.");
         }
         return await response.json();
     }
@@ -18,7 +18,7 @@ export class CategoryRepository {
         const address = `${this.#baseAddress}/categories/${id}`;
         const response = await fetch(address);
         if (!response.ok) {
-            throw new Error("There was an HTTP error getting the product data.");
+            throw new Error("There was an HTTP error getting the cat data.");
         }
         return await response.json();
     }
@@ -30,7 +30,7 @@ export class CategoryRepository {
             body: formData
         });
         if (!response.ok) {
-            throw new Error("There was an HTTP error creating the product data.");
+            throw new Error("There was an HTTP error creating the cat data.");
         }
         return await response.json();
     }
@@ -42,18 +42,20 @@ export class CategoryRepository {
             body: formData
         });
         if (!response.ok) {
-            throw new Error("There was an HTTP error updating the product data.");
+            throw new Error("There was an HTTP error updating the cat data.");
         }
         return await response.text();
     }
 
+ 
     async delete(id) {
-        const address = `${this.#baseAddress}/delete/${id}`;
+        const address = `${this.#baseAddress}/category/delete/${id}`;
+        console.log("Test Adress" + address);
         const response = await fetch(address, {
             method: "delete"
         });
         if (!response.ok) {
-            throw new Error("There was an HTTP error deleting the product data.");
+            throw new Error("There was an HTTP error deeleting the category data.");
         }
         return await response.text();
     }
