@@ -1,4 +1,19 @@
-﻿using AdvWebFinal.Models.Entities;
+﻿////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////
+//
+// Project: Inventory Management System - Final
+// File Name: APIController.cs
+// Description: Controls all api data for product, category and productcategoryrepos 
+// Course: CSCI 3110 - Advance Web Development
+// Author: Christian Rock
+// Created: 04/17/24
+// Copyright: Christian Rock, 2024, rockcm@etsu.edu
+//
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////
+///
+
+using AdvWebFinal.Models.Entities;
 using AdvWebFinal.Services;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
@@ -138,9 +153,25 @@ namespace AdvWebFinal.Controllers
             return CreatedAtAction("Get", new { id = category.Id }, category);
         }
 
+        [HttpPost("createproductcategory")]
+        public async Task<IActionResult> PostAsync([FromForm] int productId, [FromForm] int catId)
+        {
+            var productCategory = await _productCategoryRepo.CreateAsync(productId, catId);
+            // Remove the circular reference for the JSON
+            productCategory?.Product?.ProductCategory.Clear();
+            productCategory?.Category?.CategoryProduct.Clear();
+            return CreatedAtAction("Get",
+                new { id = productCategory?.Id }, productCategory);
+        }
 
-        
-
+        [HttpDelete("remove")]
+        public async Task<IActionResult> DeleteAsync(
+        [FromForm] int productId,
+        [FromForm] int catId)
+        {
+            await _productCategoryRepo.RemoveAsync(productId, catId);
+            return NoContent(); // 204 as per HTTP specification
+        }
 
 
     }

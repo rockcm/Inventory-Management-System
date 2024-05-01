@@ -1,4 +1,20 @@
-﻿using AdvWebFinal.Models.Entities;
+﻿////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////
+//
+// Project: Inventory Management System - Final
+// File Name: ProductCategoryController.cs
+// Description: manages the action methods / views for the productcategory controller. 
+// Course: CSCI 3110 - Advance Web Development
+// Author: Christian Rock
+// Created: 04/17/24
+// Copyright: Christian Rock, 2024, rockcm@etsu.edu
+//
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////
+///
+
+
+using AdvWebFinal.Models.Entities;
 using AdvWebFinal.Services;
 using Microsoft.AspNetCore.Mvc;
 

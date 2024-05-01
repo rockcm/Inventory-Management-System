@@ -24,13 +24,13 @@ export class ProductCategoryRepository {
     }
 
     async create(formData) {
-        const address = `${this.#baseAddress}/productcategories/createcategory`;
+        const address = `${this.#baseAddress}/createproductcategory`;
         const response = await fetch(address, {
             method: "post",
             body: formData
         });
         if (!response.ok) {
-            throw new Error("There was an HTTP error creating the prodcat data.");
+            throw new Error("There was an HTTP error creating the data.");
         }
         return await response.json();
     }

@@ -1,13 +1,13 @@
 ﻿////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////
 //
-// Project: Inventory Management System
+// Project: Inventory Management System - Final
 // File Name: ProductController.CS
-// Description: Product controller class that provides views for the product pages. 
+// Description: Product controller class that provides action methods and views for the product pages. 
 // Course: CSCI 3110 - Advance Web Development
 // Author: Christian Rock
 // Created: 04/17/24
-// Copyright: Christian Rock, 2024
+// Copyright: Christian Rock, 2024, rockcm@etsu.edu
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////

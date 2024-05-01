@@ -4,28 +4,30 @@
     ViewData["Title"] = "Search Products";
 }
 
-<h3>Search Products</h3>
+<h3>@ViewData["Title"]</h3>
 
-<form asp-action="Search" method="get">
-    <div class="form-group">
-        <label for="searchTerm">Search Product:</label>
-        <input type="text" id="searchTerm" name="searchTerm" class="form-control" value="@ViewBag.SearchTerm" />
-        <button type="submit" class="btn btn-primary">Search</button>
+<form asp-action="Search" method="get" class="mb-4">
+    <div class="input-group">
+        <input type="text" id="searchTerm" name="searchTerm" class="form-control" value="@ViewBag.SearchTerm" placeholder="Search Product...">
+        <div class="input-group-append">
+            <button type="submit" class="btn btn-primary">Search</button>
+        </div>
     </div>
 </form>
 
-<div>
-    <h4>Search Results:</h4>
-    <ul>
-        @foreach (var product in Model)
-        {
-            <li>
-                <p>ID: @product.Id</p>
-                <p>Name: @product.Name</p>
-                <p>Description: @product.Description</p>
-                <p>Price: @product.SellPrice</p>
-                <p><img src="@product.Image" alt="Product Image" class="img-thumbnail" /></p>
-            </li>
-        }
-    </ul>
+<div class="row">
+    @foreach (var product in Model)
+    {
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img src="@product.Image" class="card-img-top" alt="Product Image">
+                <div class="card-body">
+                    <h5 class="card-title">@product.Name</h5>
+                    <p class="card-text">Description: @product.Description</p>
+                    <p class="card-text">SellPrice: $@product.SellPrice</p>
+                    <p class="card-text">PurchasePrice: $@product.PurchasePrice</p>
+                </div>
+            </div>
+        </div>
+    }
 </div>

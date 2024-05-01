@@ -1,50 +1,40 @@
 ﻿@{
-	ViewData["Title"] = "All Products";
+    ViewData["Title"] = "All Products";
 }
-<h1>@ViewData["Title"]</h1>
 
-<style>	.table img {
-		width: 100px; /* Set the width to the desired size */
-		height: auto; /* Maintain aspect ratio */
-	}</style>
+<h1 class="display-4">@ViewData["Title"]</h1>
 
+<style>
+    .table img {
+        max-width: 100px; /* Set the maximum width for the image */
+        height: auto; /* Maintain aspect ratio */
+    }
+</style>
 
 <p>
-	<a asp-action="Create" asp-controller="Product">Create New</a>
+    <a asp-action="Create" asp-controller="Product" class="btn btn-primary mb-3">Create New</a>
 </p>
-<table class="table">
-	<thead>
-		<tr>
-			<th>
-				Id
-			</th>
-			<th>
-				Name
-			</th>
-			<th>
-				Description
-			</th>
-			<th>
-				Purchase Price
-			</th>
-			<th>
-				Sell Price
-			</th>
-			<th>
-				Stock
-			</th>
-			<th>
-				Image
-			</th>
-			<th></th>
-		</tr>
-	</thead>
-	<tbody id="productTableBody">
-	</tbody>
-</table>
 
-
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
+                <th scope="col">Purchase Price</th>
+                <th scope="col">Sell Price</th>
+                <th scope="col">Stock</th>
+                <th scope="col">Image</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody id="productTableBody">
+            <!-- Table body content will be dynamically populated -->
+        </tbody>
+    </table>
+</div>
 
 @section Scripts {
-	<script src="~/js/homeIndex.js" type="module"></script>
+    <script src="~/js/homeIndex.js" type="module"></script>
 }

@@ -32,7 +32,7 @@
                         @Html.DisplayFor(modelItem => category.Name)
                     </td>
                     <td>
-                        <a asp-action="create" asp-controller="ProductCategory"
+                        <a asp-action="create" id="formAddProduct" asp-controller="ProductCategory"
                            asp-route-productId="@product.Id"
                            asp-route-categoryId="@category.Id">Add</a>
                     </td>
@@ -41,3 +41,11 @@
         }
     </tbody>
 </table>
+
+
+@section Scripts {
+    <script defer type="module" src="~/js/addProductCategory.js"></script>
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

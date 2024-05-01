@@ -4,10 +4,10 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<h1>Create Product</h1>
 
-<h4>Product</h4>
 <hr />
+<div>
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create" id="formCreateProduct">
@@ -50,10 +50,16 @@
         </form>
     </div>
 </div>
-
-<div>
-    <a asp-action="Index" asp-controller="Home">Back to List</a>
 </div>
+
+
+    <div class="row">
+        <div class="col-md-6">
+            <a asp-action="Index" asp-controller="Home" class="btn btn-secondary">Back to List</a>
+        </div>
+    </div>
+
+
 
 @section Scripts {
     @{
