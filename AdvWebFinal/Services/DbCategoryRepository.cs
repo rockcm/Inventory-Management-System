@@ -43,6 +43,24 @@ namespace AdvWebFinal.Services
             await _db.SaveChangesAsync();
         }
 
+		public async Task<Category> UpdateAsync(Category cat)
+		{
+			var existingCat = await ReadAsync(cat.Id);
 
-    }
+			if (existingCat == null)
+			{
+				throw new ArgumentException($"Product with ID {cat.Id} not found.");
+			}
+
+			// Update properties of the existing product
+			existingCat.Name = cat.Name;
+			
+
+			// Save changes to the database
+			await _db.SaveChangesAsync();
+
+			return existingCat;
+		}
+
+	}
 }

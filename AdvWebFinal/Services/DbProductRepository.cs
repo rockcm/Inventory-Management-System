@@ -81,6 +81,7 @@ namespace AdvWebFinal.Services
 
             return existingProduct;
         }
+
         public async Task DeleteAsync(Product product)
         {
             _db.Products.Remove(product);

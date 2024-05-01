@@ -36,7 +36,7 @@ export class CategoryRepository {
     }
 
     async update(formData) {
-        const address = `${this.#baseAddress}/update`;
+        const address = `${this.#baseAddress}/updatecategory`;
         const response = await fetch(address, {
             method: "put",
             body: formData

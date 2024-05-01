@@ -153,6 +153,14 @@ namespace AdvWebFinal.Controllers
             return CreatedAtAction("Get", new { id = category.Id }, category);
         }
 
+        [HttpPut("updatecategory")]
+        public async Task<IActionResult> Put([FromForm] Category cat)
+        {
+            await _categoryRepo.UpdateAsync(cat);
+            return NoContent(); // 204 as per HTTP specification
+        }
+
+
         [HttpPost("createproductcategory")]
         public async Task<IActionResult> PostAsync([FromForm] int productId, [FromForm] int catId)
         {
