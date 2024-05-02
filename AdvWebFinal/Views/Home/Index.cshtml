@@ -10,10 +10,11 @@
 <h1>Welcome to Our My Inventory Management System</h1>
 <h4>Here you can select a page to visit</h4>
 <p>
-    <a asp-action="Index" asp-controller="Product" class="btn btn-primary">View Products</a>
-    <a asp-action="Index" asp-controller="Category" class="btn btn-primary">View Products</a>
+    <a asp-action="Index" asp-controller="Product" class="btn btn-success">View Products</a>
     <a asp-action="Create" asp-controller="Product" class="btn btn-success">Create New Product</a>
-    <a asp-action="Create" asp-controller="Category" class="btn btn-success">Create New Category</a>
+    <a asp-action="Index" asp-controller="Category" class="btn btn-primary">View Categories</a>
+    <a asp-action="Create" asp-controller="Category" class="btn btn-primary">Create New Category</a>
+    <a asp-action="Search" asp-controller="Product" class="btn btn-warning ">Search Product</a>
 </p>
 
 
@@ -32,8 +33,8 @@
                     </div>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">ID: @item.Id</li>
-                        <li class="list-group-item">Sell Price: @item.SellPrice</li>
-                        <li class="list-group-item">Purchase Price: @item.PurchasePrice</li>
+                        <li class="list-group-item">Sell Price: $@item.SellPrice</li>
+                        <li class="list-group-item">Purchase Price: $@item.PurchasePrice</li>
                         <li class="list-group-item">Stock: @item.Stock</li>
                     </ul>
                     <div class="card-body">

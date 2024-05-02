@@ -101,7 +101,7 @@ namespace AdvWebFinal.Services
 
             if (existingProduct == null)
             {
-                throw new ArgumentException($"Product with ID {product.Id} not found.");
+                return null;
             }
 
             // Update properties of the existing product

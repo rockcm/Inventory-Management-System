@@ -103,6 +103,7 @@ namespace AdvWebFinal.Controllers
         /// </summary>
         /// <param name="searchTerm"></param>
         /// <returns>shows all the products with the descr</returns>
+        /// 
         public async Task<IActionResult> Search(string searchTerm)
         {
             if (string.IsNullOrEmpty(searchTerm))

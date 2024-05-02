@@ -3,7 +3,7 @@
 @{
     var product = Model!.Product;
     var cat = Model!.Category;
-    ViewData["Title"] = "Please confirm removing course";
+    ViewData["Title"] = "Please confirm removing category";
     var question = $"Are you sure you want to remove {cat!.Name} " +
         $"from {product!.Name}?";
 }
@@ -13,11 +13,11 @@
     <form asp-action="Remove" asp-controller="ProductCategory" method="post">
         <input type="hidden" name="productId" value="@Model.ProductId" />
         <input type="hidden" name="categoryId" value="@Model.CategoryId" />
-        <button type="submit">Confirm</button>
+        <button type="submit" class="btn-danger">Confirm</button>
     </form>
 
 </div>
 
 @section Scripts {
-    @*<script defer type="module" src="~/js/studentCourseRemove.js"></script>*@
+  
 }

@@ -36,8 +36,8 @@ function createproductTR(product) {
     tr.appendChild(domCreator.createTextTD(product.id));
     tr.appendChild(domCreator.createTextTD(product.name));
     tr.appendChild(domCreator.createTextTD(product.description));
-    tr.appendChild(domCreator.createTextTD(product.purchasePrice));
-    tr.appendChild(domCreator.createTextTD(product.sellPrice));
+    tr.appendChild(domCreator.createTextTD("$" + product.purchasePrice));
+    tr.appendChild(domCreator.createTextTD("$" + product.sellPrice));
     tr.appendChild(domCreator.createTextTD(product.stock));
     tr.appendChild(domCreator.createImageTD(product.image));
     tr.appendChild(createTDWithLinks(product.id));
