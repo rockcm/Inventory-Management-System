@@ -1,5 +1,22 @@
-﻿using AdvWebFinal.Models.Entities;
+﻿////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////
+//
+// Project: Inventory Management System - Final
+// File Name: DbProductRepository.cs
+// Description: class that interacts with the database to retrieve, edit and delete products etc. 
+// Course: CSCI 3110 - Advance Web Development
+// Author: Christian Rock
+// Created: 04/17/24
+// Copyright: Christian Rock, 2024, rockcm@etsu.edu
+//
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////
+///
+
+
+using AdvWebFinal.Models.Entities;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace AdvWebFinal.Services
 {
@@ -8,10 +25,16 @@ namespace AdvWebFinal.Services
 
         private readonly ApplicationDbContext _db;
 
+        /// <summary>
+        /// injects the db context 
+        /// </summary>
+        /// <param name="db">the db context</param>
         public DbProductRepository(ApplicationDbContext db)
         {
             _db = db;
         }
+
+        // returns all products from the database
         public async Task<ICollection<Product>> ReadAllAsync()
         {
             var products = await _db.Products
@@ -19,7 +42,7 @@ namespace AdvWebFinal.Services
                     .ThenInclude(pc => pc.Category)
                 .ToListAsync();
 
-            // Manually flatten the query result
+            // create a projection for the products
             return products.Select(p => new Product
             {
                 Id = p.Id,
@@ -42,6 +65,11 @@ namespace AdvWebFinal.Services
             }).ToList();
         }
 
+        /// <summary>
+        /// returns product with corresponding Id
+        /// </summary>
+        /// <param name="id">the id of the item to be read</param>
+        /// <returns></returns>
         public async Task<Product?> ReadAsync(int id)
         {
 
@@ -52,6 +80,10 @@ namespace AdvWebFinal.Services
 
         }
 
+        /// <summary>
+        ///  creates a product in the database
+        /// </summary>
+        /// <param name="product">the product to be created</param>
         public async Task<Product> CreateAsync(Product product)
         {
             _db.Products.Add(product);
@@ -59,6 +91,10 @@ namespace AdvWebFinal.Services
             return product;
         }
 
+        /// <summary>
+        /// updates a product in the database 
+        /// </summary>
+        /// <param name="product">the product to be updated</param>
         public async Task<Product> UpdateAsync(Product product)
         {
             var existingProduct = await ReadAsync(product.Id);
@@ -82,45 +118,33 @@ namespace AdvWebFinal.Services
             return existingProduct;
         }
 
+        /// <summary>
+        /// deletes a product from the database
+        /// </summary>
+        /// <param name="product">the product that will be deleted</param>
         public async Task DeleteAsync(Product product)
         {
             _db.Products.Remove(product);
             await _db.SaveChangesAsync();
         }
 
+        /// <summary>
+        /// searche database for products that contain the string search term 
+        /// </summary>
+        /// <param name="searchTerm">the words/characters to be searched</param>
+        /// <returns>all products that contain the search term </returns>
         public async Task<List<Product>> SearchProductsAsync(string searchTerm)
         {
+            // searches through db for products containing search term
             return await _db.Products
                 .Where(p => p.Name.Contains(searchTerm) || p.Description.Contains(searchTerm))
                 .ToListAsync();
         }
 
-        public async Task<List<(Category category, List<Product> products)>> GetProductsByCategoryAsync()
-        {
-            var categoriesWithProducts = await _db.Categories
-                .Select(category => new
-                {
-                    category,
-                    products = category.CategoryProduct.Select(pc => pc.Product).ToList()
-                })
-                .ToListAsync();
+    
 
-            return categoriesWithProducts.Select(cwp => (cwp.category, cwp.products)).ToList();
-        }
+  
+ 
 
-		public async Task RemoveCategoryFromProductAsync(int productId, int categoryId)
-		{
-			var product = await _db.Products.FindAsync(productId);
-			if (product != null)
-			{
-				var productCategory = product.ProductCategory.FirstOrDefault(pc => pc.CategoryId == categoryId);
-				if (productCategory != null)
-				{
-					product.ProductCategory.Remove(productCategory);
-					await _db.SaveChangesAsync();
-				}
-			}
-		}
-
-	}
+    }
 }

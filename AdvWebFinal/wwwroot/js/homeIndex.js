@@ -7,13 +7,30 @@ const domCreator = new DOMCreator();
 const productTableBody = document.querySelector("#productTableBody");
 productTableBody.appendChild(domCreator.createImageTR("./images/ajax-loader.gif",
     "Loading image"));
-let products = await productRepo.readAll();
-console.log(products);
-domCreator.removeChildren(productTableBody);
-products.forEach((product) => {
-    productTableBody.appendChild(createproductTR(product));
-});
-function createproductTR(product) {
+
+
+
+// self invoking function to automatically load 3 products 
+(async () => {
+    let products = await productRepo.readAll();
+    console.log(products);
+
+    // Shuffle the products randomly
+    products = shuffle(products);
+
+    const randomProducts = products.slice(0, 3);
+
+    // Clear existing content from the table body
+    domCreator.removeChildren(productTableBody);
+
+    // Populate the table with the selected random products
+    randomProducts.forEach((product) => {
+        productTableBody.appendChild(createProductTR(product));
+    });
+})();
+
+
+function createProductTR(product) {
     const tr = document.createElement("tr");
     tr.appendChild(domCreator.createTextTD(product.id));
     tr.appendChild(domCreator.createTextTD(product.name));
@@ -34,4 +51,13 @@ function createTDWithLinks(id) {
     td.appendChild(document.createTextNode(" | "));
     td.appendChild(domCreator.createTextLink(`/product/delete/${id}`, "Delete"));
     return td;
+}
+
+//https://medium.com/@khaledhassan45/how-to-shuffle-an-array-in-javascript-6ca30d53f772
+function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array
 }

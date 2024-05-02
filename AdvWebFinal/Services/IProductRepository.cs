@@ -1,4 +1,20 @@
-﻿using AdvWebFinal.Models.Entities;
+﻿////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////
+//
+// Project: Inventory Management System - Final
+// File Name: IProductRepository.cs
+// Description: interface class for products 
+// Course: CSCI 3110 - Advance Web Development
+// Author: Christian Rock
+// Created: 04/17/24
+// Copyright: Christian Rock, 2024, rockcm@etsu.edu
+//
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////
+///
+
+
+using AdvWebFinal.Models.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace AdvWebFinal.Services
@@ -15,11 +31,8 @@ namespace AdvWebFinal.Services
 
         Task<List<Product>> SearchProductsAsync(string searchTerm);
 
-        Task<List<(Category category, List<Product> products)>> GetProductsByCategoryAsync();
 
 
-        Task RemoveCategoryFromProductAsync(int productId, int categoryId);
-		
 
 	}
 }

@@ -1,3 +1,19 @@
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////
+//
+// Project: Inventory Management System - Final
+// File Name: Program.cs
+// Description: startup file that initializes services and application
+// Course: CSCI 3110 - Advance Web Development
+// Author: Christian Rock
+// Created: 04/17/24
+// Copyright: Christian Rock, 2024, rockcm@etsu.edu
+//
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////
+///
+
+
 using AdvWebFinal.Services;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;

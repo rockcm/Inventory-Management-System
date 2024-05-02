@@ -24,12 +24,20 @@ namespace AdvWebFinal.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly IProductRepository _productRepo;
 
+        /// <summary>
+        /// home controller constructor
+        /// </summary>
+        /// <param name="logger">logger </param>
+        /// <param name="productRepository">the product repository</param>
         public HomeController(ILogger<HomeController> logger, IProductRepository productRepository)
         {
             _logger = logger;
             _productRepo = productRepository;
         }
 
+        /// <summary>
+        /// view for the home page of the website
+        /// </summary>
         public async Task<IActionResult> Index()
         {
             var products = await _productRepo.ReadAllAsync();
@@ -37,7 +45,7 @@ namespace AdvWebFinal.Controllers
 
             return View(products);
         }
-
+        // privacy method
         public IActionResult Privacy()
         {
             return View();

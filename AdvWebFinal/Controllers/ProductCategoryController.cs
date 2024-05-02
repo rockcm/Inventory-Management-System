@@ -20,12 +20,19 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AdvWebFinal.Controllers
 {
+
     public class ProductCategoryController : Controller
     {
         private readonly IProductRepository _productRepo;
         private readonly ICategoryRepository _categoryRepo;
         private readonly IProductCategoryRepository _productCategoryRepo;
 
+        /// <summary>
+        /// controller constructor that injects product and productcategory repositories
+        /// </summary>
+        /// <param name="productRepo">the product repository</param>
+        /// <param name="productCategoryRepo">the productcategory repository</param>
+        ///<param name="categoryRepo"> the category repository</param>
         public ProductCategoryController(IProductCategoryRepository productCategoryRepo,IProductRepository productRepo, ICategoryRepository categoryRepo)
         {
             _productRepo = productRepo;
@@ -35,12 +42,20 @@ namespace AdvWebFinal.Controllers
 
         }
 
-
+        /// <summary>
+        ///  returns the index view for productcategory
+        /// </summary>
         public IActionResult Index()
         {
             return View();
         }
 
+
+        /// <summary>
+        /// returns the page where the product is assigned to a category
+        /// </summary>
+        ///  <param name="productId">the products id</param>
+        /// <param name="categoryId">the categories id</param>
         public async Task<IActionResult> Create(int productId, int categoryId)
         {
             // Retrieve the product and category
@@ -73,6 +88,11 @@ namespace AdvWebFinal.Controllers
             return View(productCategory);
         }
 
+        /// <summary>
+        /// post method for adding category to product
+        /// </summary>
+        /// <param name="productId">the products id</param>
+        /// <param name="categoryId">the categories id</param>
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ActionName("CreateConfirmed")]
@@ -82,7 +102,12 @@ namespace AdvWebFinal.Controllers
             return RedirectToAction("Details", "Product", new { id = productId });
         }
 
-
+        /// <summary>
+        /// returns the page where the product is removed from a category
+        /// </summary>
+        /// <param name="productId">the products id</param>
+        /// <param name="categoryId">the categories id</param>
+        /// <returns></returns>
 		public async Task<IActionResult> Remove(
 	   int productId, int categoryId)
 		{
@@ -100,6 +125,12 @@ namespace AdvWebFinal.Controllers
 			return View(prodCat);
 		}
 
+        /// <summary>
+        /// post method for removing category to product
+        /// </summary>
+        /// <param name="productId">the products id</param>
+        /// <param name="categoryId">the categories id</param>
+        /// <returns></returns>
 		[HttpPost, ValidateAntiForgeryToken, ActionName("Remove")]
 		public async Task<IActionResult> RemoveConfirmed(
 			int productId, int categoryId)

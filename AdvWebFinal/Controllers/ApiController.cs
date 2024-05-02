@@ -26,13 +26,18 @@ namespace AdvWebFinal.Controllers
   
     [ApiController]
     [Route("/[controller]")]
-   
     public class ApiController : ControllerBase
     {
         private readonly IProductRepository _productRepo;
         private readonly ICategoryRepository _categoryRepo;
         private readonly IProductCategoryRepository _productCategoryRepo;
 
+        /// <summary>
+        /// constructor for the api controller
+        /// </summary>
+        /// <param name="categoryRepo"> the category repository</param>
+        /// <param name="productRepo">the product repository</param>
+        /// <param name="productCategoryRepo">the productcategory repository</param>
         public ApiController(IProductRepository productRepo, ICategoryRepository categoryRepo, IProductCategoryRepository productCategoryRepo)
         {
             _productRepo = productRepo;
@@ -40,7 +45,9 @@ namespace AdvWebFinal.Controllers
             _productCategoryRepo = productCategoryRepo;
         }
 
-        // Product CRUD operations
+       /// <summary>
+       /// contains all json information for products
+       /// </summary>
         [HttpGet("products")]
         public async Task<IActionResult> GetProductsAsync()
         {
@@ -58,7 +65,10 @@ namespace AdvWebFinal.Controllers
         }
 
 
-
+        /// <summary>
+        /// contains the json information for product with the id
+        /// </summary>
+        /// <param name="id">the id for product</param>
         [HttpGet("products/{id}")]
         public async Task<ActionResult<Product>> Get(int id)
         {
@@ -70,6 +80,11 @@ namespace AdvWebFinal.Controllers
             return Ok(product);
         }
 
+        /// <summary>
+        /// creates a product in the database 
+        /// </summary>
+        /// <param name="product">the product to be created</param>
+        /// <returns></returns>
         [HttpPost("createproduct")]
         public async Task<IActionResult> Post([FromForm] Product product)
         {
@@ -78,6 +93,10 @@ namespace AdvWebFinal.Controllers
         }
 
 
+        /// <summary>
+        /// delests the product information for product with the id from the database
+        /// </summary>
+        /// <param name="id">the id for product</param>
         [HttpDelete("product/delete/{id}")]
         public async Task<IActionResult> Delete(int id)
         {
@@ -94,6 +113,11 @@ namespace AdvWebFinal.Controllers
         }
 
 
+        /// <summary>
+        /// udpates a product in the database
+        /// </summary>
+        /// <param name="product">the product to be updated</param>
+        /// <returns></returns>
         [HttpPut("update")]
         public async Task<IActionResult> Put([FromForm] Product product)
         {
@@ -102,6 +126,9 @@ namespace AdvWebFinal.Controllers
         }
 
 
+        /// <summary>
+        /// contains all json information for categories
+        /// </summary>
         [HttpGet("categories")]
         public async Task<ActionResult<IEnumerable<Category>>> GetCategories()
         {
@@ -109,6 +136,11 @@ namespace AdvWebFinal.Controllers
             return Ok(categories);
         }
 
+
+        /// <summary>
+        /// contains the json information for category with the id
+        /// </summary>
+        /// <param name="id">the id for category</param>
         [HttpGet("categories/{id}")]
         public async Task<ActionResult<Product>> GetCat(int id)
         {
@@ -120,7 +152,10 @@ namespace AdvWebFinal.Controllers
             return Ok(cat);
         }
 
-
+        /// <summary>
+        /// delests the product information for category with the id from the database
+        /// </summary>
+        /// <param name="id">the id for category</param>
         [HttpDelete("category/delete/{id}")]
         public async Task<IActionResult> DeleteCat(int id)
         {
@@ -137,6 +172,9 @@ namespace AdvWebFinal.Controllers
         }
 
 
+        /// <summary>
+        /// contains all the product category json information
+        /// </summary>
 
         [HttpGet("productcategories")]
         public async Task<ActionResult<IEnumerable<ProductCategory>>> GetProductCategories()
@@ -146,6 +184,10 @@ namespace AdvWebFinal.Controllers
         }
 
 
+        /// <summary>
+        /// creates a category in the database 
+        /// </summary>
+        /// <param name="category">the category to be created</param>
         [HttpPost("createcategory")]
         public async Task<IActionResult> Post([FromForm] Category category)
         {
@@ -153,6 +195,11 @@ namespace AdvWebFinal.Controllers
             return CreatedAtAction("Get", new { id = category.Id }, category);
         }
 
+        /// <summary>
+        /// updates a category 
+        /// </summary>
+        /// <param name="category">the category to be updates</param>
+        /// <returns></returns>
         [HttpPut("updatecategory")]
         public async Task<IActionResult> Put([FromForm] Category cat)
         {
@@ -160,7 +207,12 @@ namespace AdvWebFinal.Controllers
             return NoContent(); // 204 as per HTTP specification
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="productId">the product id</param>
+        /// <param name="catId">the category id</param>
+        /// <returns></returns>
         [HttpPost("createproductcategory")]
         public async Task<IActionResult> PostAsync([FromForm] int productId, [FromForm] int catId)
         {
@@ -172,6 +224,12 @@ namespace AdvWebFinal.Controllers
                 new { id = productCategory?.Id }, productCategory);
         }
 
+        /// <summary>
+        /// removes a product from a category NOT IMPLEMENTED 
+        /// </summary>
+        /// <param name="productId">the product Id</param>
+        /// <param name="catId">the category id</param>
+        /// <returns></returns>
         [HttpDelete("remove")]
         public async Task<IActionResult> DeleteAsync(
         [FromForm] int productId,
