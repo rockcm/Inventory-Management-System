@@ -1,4 +1,19 @@
-﻿"use strict"
+﻿////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////
+//
+// Project: Inventory Management System - Final
+// File Name: categoryUpdate.js
+// Description: javascript for the update category page 
+// Course: CSCI 3110 - Advance Web Development
+// Author: Christian Rock
+// Created: 04/17/24
+// Copyright: Christian Rock, 2024, rockcm@etsu.edu
+//
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////
+///
+
+"use strict"
 
 import { CategoryRepository } from "./CategoryRepository.js";
 import { DOMCreator } from "./domCreator.js";
@@ -26,7 +41,7 @@ formCategoryEdit.addEventListener("submit", async (e) => {
     }
 });
 
-
+// method to populate the category data from the database
 async function populateCategoryData() {
     try {
         const category = await categoryRepo.read(categoryId);

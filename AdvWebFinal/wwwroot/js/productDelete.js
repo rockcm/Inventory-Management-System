@@ -1,4 +1,20 @@
-﻿"use strict"
+﻿////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////
+//
+// Project: Inventory Management System - Final
+// File Name: productDelete.js
+// Description: class  to deletes a product from the databse using javascript
+// Course: CSCI 3110 - Advance Web Development
+// Author: Christian Rock
+// Created: 04/17/24
+// Copyright: Christian Rock, 2024, rockcm@etsu.edu
+//
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////
+///
+
+
+"use strict"
 import { ProductRepository } from "./ProductRepository.js";
 import { DOMCreator } from "./domCreator.js";
 const productRepo = new ProductRepository("https://localhost:7095/api");
@@ -26,6 +42,8 @@ formProductDelete.addEventListener("submit", async (e) => {
         console.log("Error processing" + error);
     }
 });
+
+// method to populate the product data from the database
 async function populateProductData() {
     try {
         const product = await productRepo.read(productId);

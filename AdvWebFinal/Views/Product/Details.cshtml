@@ -50,13 +50,7 @@
         <dd class="col-sm-10" id="Stock">
            
         </dd>
-        <dt class="col-sm-2">
-            Image
-        </dt>
-        <dd class="col-sm-10" id="Image">
-
-            <img src="@Model.Image" alt="Product Image" style="max-width: 100px;" />
-        </dd>
+       
         <dt class="col-sm-2">
             Category
         </dt>
@@ -68,15 +62,22 @@
                 <br />
             }
         </dd>
+                <dt class="col-sm-2">
+                    Image
+                </dt>
+                <dd class="col-sm-10" id="Image">
+
+                    <img src="@Model.Image" alt="Product Image" style="max-width: 100px;" />
+                </dd>
     </dl>
 </div>
 </div>
-
+</div>
 
 
 <div>
     @Html.ActionLink("Edit", "Update", new { id = Model.Id } ) |
-    <a asp-action="Index" asp-controller="Home">Back to List</a> |
+    <a asp-action="Index" asp-controller="Product">Back to List</a> |
     <a asp-action="AddCategory" asp-controller="Category" asp-route-id="@Model!.Id">Add Category</a> |
      <a asp-action="DetailsPlus" asp-controller="Product"
                            asp-route-Id="@Model!.Id" >Remove a category</a>

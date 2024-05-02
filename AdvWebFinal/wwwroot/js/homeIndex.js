@@ -1,4 +1,20 @@
-﻿"use strict"
+﻿////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////
+//
+// Project: Inventory Management System - Final
+// File Name: ProductIndex.js
+// Description: loads all the products dynamically on the page // similar to productindex.js
+// Course: CSCI 3110 - Advance Web Development
+// Author: Christian Rock
+// Created: 04/17/24
+// Copyright: Christian Rock, 2024, rockcm@etsu.edu
+//
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////
+///
+
+
+"use strict"
 import { ProductRepository } from "./ProductRepository.js";
 import { DOMCreator } from "./domCreator.js";
 const productRepo = new ProductRepository("https://localhost:7095/api");

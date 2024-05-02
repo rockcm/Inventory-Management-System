@@ -1,4 +1,20 @@
-﻿"use strict";
+﻿////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////
+//
+// Project: Inventory Management System - Final
+// File Name: productDetails.js
+// Description: js class that loads all the products details dynamically on the page
+// Course: CSCI 3110 - Advance Web Development
+// Author: Christian Rock
+// Created: 04/17/24
+// Copyright: Christian Rock, 2024, rockcm@etsu.edu
+//
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////
+///
+
+
+"use strict";
 import { ProductRepository } from "./ProductRepository.js";
 import { DOMCreator } from "./domCreator.js";
 

@@ -1,4 +1,20 @@
-﻿"use strict"
+﻿////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////
+//
+// Project: Inventory Management System - Final
+// File Name: ProductIndex.js
+// Description: loads all the products dynamically on the page
+// Course: CSCI 3110 - Advance Web Development
+// Author: Christian Rock
+// Created: 04/17/24
+// Copyright: Christian Rock, 2024, rockcm@etsu.edu
+//
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////
+///
+
+
+"use strict"
 import { ProductRepository } from "./ProductRepository.js";
 import { DOMCreator } from "./domCreator.js";
 const productRepo = new ProductRepository("https://localhost:7095/api");
@@ -13,6 +29,8 @@ domCreator.removeChildren(productTableBody);
 products.forEach((product) => {
     productTableBody.appendChild(createproductTR(product));
 });
+
+//creates the product on the page 
 function createproductTR(product) {
     const tr = document.createElement("tr");
     tr.appendChild(domCreator.createTextTD(product.id));
@@ -26,6 +44,7 @@ function createproductTR(product) {
 
     return tr;
 }
+//populates action links on the products
 function createTDWithLinks(id) {
     const td = document.createElement("td");
     td.appendChild(domCreator.createTextLink(`/product/update/${id}`, "Edit"));

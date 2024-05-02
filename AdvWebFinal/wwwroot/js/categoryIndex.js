@@ -1,4 +1,19 @@
-﻿
+﻿////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////
+//
+// Project: Inventory Management System - Final
+// File Name: categoryIndex.js
+// Description: loads all the category dynamically on the page
+// Course: CSCI 3110 - Advance Web Development
+// Author: Christian Rock
+// Created: 04/17/24
+// Copyright: Christian Rock, 2024, rockcm@etsu.edu
+//
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////
+///
+
+
 "use strict"
 import { CategoryRepository } from "./CategoryRepository.js";
 import { DOMCreator } from "./domCreator.js";
@@ -16,6 +31,7 @@ Category.forEach((category) => {
 });
 
 
+//creates the category on the page 
 function createCategoryTR(category) {
     const tr = document.createElement("tr");
     tr.appendChild(domCreator.createTextTD(category.id));
@@ -24,6 +40,8 @@ function createCategoryTR(category) {
 
     return tr;
 }
+
+//populates action links on the categories
 function createTDWithLinks(id) {
     const td = document.createElement("td");
     td.appendChild(domCreator.createTextLink(`/category/deletecat/${id}`, "Delete")); 

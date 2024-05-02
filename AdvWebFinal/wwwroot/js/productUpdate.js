@@ -41,7 +41,7 @@ formProductEdit.addEventListener("submit", async (e) => {
 
 
 
-// method to populate the product data from the database
+// function to populate the product data from the database
 async function populateProductData() {
     try {
         const product = await productRepo.read(productId);

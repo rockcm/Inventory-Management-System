@@ -1,4 +1,21 @@
-﻿"use strict"
+﻿////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////
+//
+// Project: Inventory Management System - Final
+// File Name: categoryDelete.js
+// Description: class  to deletes a product from the databse using javascript
+// Course: CSCI 3110 - Advance Web Development
+// Author: Christian Rock
+// Created: 04/17/24
+// Copyright: Christian Rock, 2024, rockcm@etsu.edu
+//
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////
+///
+
+
+
+"use strict"
 
 import { CategoryRepository } from "./CategoryRepository.js";
 import { DOMCreator } from "./domCreator.js";
@@ -29,6 +46,8 @@ formCategoryDelete.addEventListener("submit", async (e) => {
         console.log("Error processinggggg" + error);
     }
 });
+
+// method to populate the category data from the database
 async function populateCategoryData() {
     try {
         const category = await categoryRepo.read(categoryId);
