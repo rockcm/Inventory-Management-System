@@ -2,31 +2,30 @@
 
 @{
     ViewData["Title"] = "Index";
-
     var random = new Random();
     var shuffledItems = Model.OrderBy(x => random.Next()).Take(3);
 }
 
-<h1>Welcome to Our My Inventory Management System</h1>
-<h4>Here you can select a page to visit</h4>
-<p>
-    <a asp-action="Index" asp-controller="Product" class="btn btn-success">View Products</a>
-    <a asp-action="Create" asp-controller="Product" class="btn btn-success">Create New Product</a>
-    <a asp-action="Index" asp-controller="Category" class="btn btn-primary">View Categories</a>
-    <a asp-action="Create" asp-controller="Category" class="btn btn-primary">Create New Category</a>
-    <a asp-action="Search" asp-controller="Product" class="btn btn-warning ">Search Product</a>
-</p>
+<div class="container my-5">
+    <h1 class="text-center mb-4">Welcome to My Store</h1>
 
 
-<h2 class="h2">Featured Products</h2>
+    <div class="d-flex justify-content-center mb-5">
+        <a asp-action="Index" asp-controller="Product" class="btn btn-primary mx-2">View Products</a>
+        <a asp-action="Create" asp-controller="Product" class="btn btn-primary mx-2">Create New Product</a>
+        <a asp-action="Index" asp-controller="Category" class="btn btn-success mx-2">View Categories</a>
+        <a asp-action="Create" asp-controller="Category" class="btn btn-success mx-2">Create New Category</a>
+        <a asp-action="Search" asp-controller="Product" class="btn btn-warning mx-2">Search Product</a>
+    </div>
 
-<div class="container">
+    <h2 class="text-center mb-4">Featured Products</h2>
+
     <div class="row">
-        @foreach (var item in shuffledItems.Take(3))
+        @foreach (var item in shuffledItems)
         {
             <div class="col-md-4 mb-4">
-                <div class="card">
-                    <img src="@item.Image" class="card-img-top" alt="Product Image">
+                <div class="card h-100">
+                    <img src="@item.Image" class="card-img-top" alt="Product Image" style="height: 200px; object-fit: cover;">
                     <div class="card-body">
                         <h5 class="card-title">@item.Name</h5>
                         <p class="card-text">@item.Description</p>
@@ -37,84 +36,13 @@
                         <li class="list-group-item">Purchase Price: $@item.PurchasePrice</li>
                         <li class="list-group-item">Stock: @item.Stock</li>
                     </ul>
-                    <div class="card-body">
-                        <a asp-controller="Product" asp-action="Update" asp-route-id="@item.Id" class="card-link">Edit</a>
-                        <a asp-controller="Product" asp-action="Details" asp-route-id="@item.Id" class="card-link">Details</a>
-                        <a asp-controller="Product" asp-action="Delete" asp-route-id="@item.Id" class="card-link">Delete</a>
+                    <div class="card-body justify-content-around">
+                        <a asp-controller="Product" asp-action="Update" asp-route-id="@item.Id" class="btn btn-warning">Edit</a>
+                        <a asp-controller="Product" asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary">Details</a>
+                        <a asp-controller="Product" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
                     </div>
                 </div>
             </div>
         }
     </div>
 </div>
-
-
-@*
-@{
-	ViewData["Title"] = "All Products";
-}
-<h1>@ViewData["Title"]</h1>
-
-<style>
-	.table img {
-		width: 100px; /* sets image */
-		height: auto; /* sets image  */
-
-	}</style>
-
-    <p class="intro"></p>
-<p>
-    <a asp-action="Index" asp-controller="Product" class="btn btn-primary">View Products</a>
-    <a asp-action="Index" asp-controller="Category" class="btn btn-primary">View Products</a>
-    <a asp-action="Create" asp-controller="Product" class="btn btn-success">Create New Product</a>
-    <a asp-action="Create" asp-controller="Category" class="btn btn-success">Create New Category</a>
-</p>
-
-<div class="row">
-    <div class="col-clg-12">
-
-<div class="table-responsive">
-
-    <table class="table table-striped table-hover">
-
-        <thead class="thead-dark">
-
-            <tr>
-                <th>
-                    Id
-                </th>
-                <th>
-                    Name
-                </th>
-                <th>
-                    Description
-                </th>
-                <th>
-                    Purchase Price
-                </th>
-                <th>
-                    Sell Price
-                </th>
-                <th>
-                    Stock
-                </th>
-                <th>
-                    Image
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody id="productTableBody">
-
-        </tbody>
-    </table>
-</div>
-</div>
-</div>
-
-
-@section Scripts {
-	<script src="~/js/homeIndex.js" type="module"></script>
-}
-
-*@

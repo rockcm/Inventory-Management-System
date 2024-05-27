@@ -4,10 +4,11 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create Product</h1>
+<div class="card">
+<h1 class="card-header">Create Product</h1>
 
 <hr />
-<div>
+<div class="card-body">
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create" id="formCreateProduct">
@@ -48,16 +49,18 @@
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
+        <br />
+                <div class="row">
+                    <div class="col-md-6">
+                        <a asp-action="Index" asp-controller="Home" class="btn btn-secondary">Back to List</a>
+                    </div>
+                </div>
     </div>
 </div>
 </div>
+</div>
 
-
-    <div class="row">
-        <div class="col-md-6">
-            <a asp-action="Index" asp-controller="Home" class="btn btn-secondary">Back to List</a>
-        </div>
-    </div>
+    
 
 
 

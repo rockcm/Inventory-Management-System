@@ -8,7 +8,7 @@
 
 <form asp-action="Search" method="get" class="mb-4">
     <div class="input-group">
-        <input type="text" id="searchTerm" name="searchTerm" class="form-control" value="@ViewBag.SearchTerm" placeholder="Search Product...">
+        <input type="text" id="searchTerm" name="searchTerm" class="form-control" value="@ViewBag.SearchTerm" >
         <div class="input-group-append">
             <button type="submit" class="btn btn-primary">Search</button>
         </div>
@@ -27,6 +27,13 @@
                     <p class="card-text">SellPrice: $@product.SellPrice</p>
                     <p class="card-text">PurchasePrice: $@product.PurchasePrice</p>
                 </div>
+
+                <div class="card-body">
+                    <a asp-controller="Product" asp-action="Update" asp-route-id="@product.Id" class="card-link btn btn-warning">Edit</a>
+                    <a asp-controller="Product" asp-action="Details" asp-route-id="@product.Id" class="card-link btn btn-primary">Details</a>
+                    <a asp-controller="Product" asp-action="Delete" asp-route-id="@product.Id" class="card-link btn btn-danger">Delete</a>
+                </div>
+
             </div>
         </div>
     }

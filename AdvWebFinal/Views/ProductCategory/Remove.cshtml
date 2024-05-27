@@ -3,12 +3,29 @@
 @{
     var product = Model!.Product;
     var cat = Model!.Category;
-    ViewData["Title"] = "Please confirm removing category";
-    var question = $"Are you sure you want to remove {cat!.Name} " +
+    ViewData["Title"] = "Please confirm removing a category";
+    var question = $"Are you sure you want to remove \"{cat!.Name}\" " +
         $"from {product!.Name}?";
 }
-<h2>@ViewData["Title"]</h2>
+<h1>@ViewData["Title"]</h1>
 <h3>@question</h3>
+
+<div>
+    <h4>Product Details:</h4>
+    <div class="card">
+        <div class="card-body">
+    <p><strong>Name:</strong> @product.Name</p>
+    <p><strong>Description:</strong> @product.Description</p>
+    <p><strong>Purchase Price:</strong> $@product.PurchasePrice</p>
+    <p><strong>Sell Price:</strong> $@product.SellPrice</p>
+    <p><strong>Stock:</strong> @product.Stock</p>
+    <p><strong>Image:</strong></p>
+    <p><img src="@product.Image" class="card-img-top" alt="Product Image" style="width: 200px;"></p>
+</div>
+</div>
+
+
+
 <div>
     <form asp-action="Remove" asp-controller="ProductCategory" method="post">
         <input type="hidden" name="productId" value="@Model.ProductId" />

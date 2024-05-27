@@ -6,9 +6,12 @@
 
 <h1>Remove a Category</h1>
 
+
 <div>
-    <h4>Product</h4>
-    <hr />
+    <h4 class="card-header">Product</h4>
+    <div class="card">
+        <div class="card-body">
+
     <dl class="row">
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Id)
@@ -49,11 +52,12 @@
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Image)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Image)
-        </dd>
+                <dd class="col-sm-10">
+                    <img src="@Model.Image" alt="Image" style="width: 200px;"/>
+                </dd>
     </dl>
-
+    </div>
+    </div>
    
 </div>
 
@@ -88,8 +92,8 @@
                     <td>
 
                         <a asp-action="remove" asp-controller="ProductCategory"
-                           asp-route-productId="@Model!.Id" asp-route-categoryId="@item.Category.Id">
-                            Remove category
+                           asp-route-productId="@Model!.Id" asp-route-categoryId="@item.Category.Id" class="btn btn-primary">
+                            Remove Category
                         </a>
                     </td>
                 </tr>
@@ -99,8 +103,5 @@
 </table>
 
 <div>
-
-
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    <a asp-action="Index">Back to List</a>
+    <a asp-controller="Product" asp-action="Details" asp-route-id="@Model.Id" class="btn btn-success">Back to @Model.Name</a>
 </div>

@@ -3,29 +3,29 @@
 @{
     ViewData["Title"] = "Create";
 }
+<div class="card">
+    <h1 class="card-header">Create Category</h1>
 
-<h1>Create</h1>
-
-<h4>Category</h4>
-<hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create" id="formCreateCategory">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
             <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
+                <label asp-for="Name" class="control-label card-title"></label>
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
 
-
+            <br />
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
+</div>
+
 
 <div>
     <a asp-action="Index" asp-controller="Category">Back to List</a>

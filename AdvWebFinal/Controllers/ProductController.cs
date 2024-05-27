@@ -106,7 +106,7 @@ namespace AdvWebFinal.Controllers
         /// 
         public async Task<IActionResult> Search(string searchTerm)
         {
-            if (string.IsNullOrEmpty(searchTerm))
+            if (searchTerm == null)
             {
                 ViewBag.SearchTerm = searchTerm;
                 return View(new List<Product>()); // returns empty list if no products found

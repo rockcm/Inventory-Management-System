@@ -5,7 +5,24 @@
     ViewData["Title"] = $"Add Category to Product: {product.Name}";
 }
 
-<h1>@ViewData["Title"]</h1>
+<h1 >@ViewData["Title"]</h1>
+
+
+    <h4 class="card-header">Product Details:</h4>
+<div class="card">
+    <div class="card-body">
+    <p><strong>Name:</strong> @product.Name</p>
+    <p><strong>Description:</strong> @product.Description</p>
+    <p><strong>Purchase Price:</strong> $@product.PurchasePrice</p>
+    <p><strong>Sell Price:</strong> $@product.SellPrice</p>
+    <p><strong>Stock:</strong> @product.Stock</p>
+    <p><strong>Image:</strong></p>
+    <p><img src="@product.Image" class="card-img-top" alt="Product Image" style="width: 200px;"></p>
+        
+    </div>
+</div>
+
+
 
 <table class="table">
     <thead>
@@ -19,6 +36,10 @@
             <th></th>
         </tr>
     </thead>
+    <div>
+        <a asp-controller="Product" asp-action="Details" asp-route-id="@product.Id" class="btn btn-success">Back to @product.Name</a>
+    </div>
+
     <tbody>
         @if (Model != null)
         {
@@ -34,7 +55,7 @@
                     <td>
                         <a asp-action="create" id="formAddProduct" asp-controller="ProductCategory"
                            asp-route-productId="@product.Id"
-                           asp-route-categoryId="@category.Id">Add</a>
+                           asp-route-categoryId="@category.Id" class="btn btn-primary">Add</a>
                     </td>
                 </tr>
             }
