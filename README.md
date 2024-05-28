@@ -17,7 +17,9 @@ Entity Framework Core
 
 
 API Endpoints:
+
 Products-
+
 GET /api/products: Retrieve all products.
 
 GET /api/products/{id}: Retrieve a product by its ID.
