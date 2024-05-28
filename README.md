@@ -1,19 +1,31 @@
 Inventory Management System 
+
 Overview
+
 The Inventory Management System is a comprehensive solution designed for managing products, categories, and their associations within an inventory. This project users ASP.Net Core to achieve this and includes a robust API for handling CRUD operations on products, categories, and their relationships.
 
 Features
+
 Products Management: Create, read, update, and delete product entries.
+
 Categories Management: Create, read, update, and delete category entries.
+
 Product-Category Relationships: Manage the association between products and categories.
 
 Technologies Used
+
 ASP.NET Core Web API
+
 C#
+
 Microsoft SQL Server
-Bootstrap (for front-end styling)
+
+Bootstrap 
+
 JavaScript/Ajax
+
 Entity Framework Core
+
 
 
 API Endpoints:
