@@ -10,7 +10,9 @@ Products Management: Create, read, update, and delete product entries.
 
 Categories Management: Create, read, update, and delete category entries.
 
-Product-Category Relationships: Manage the association between products and categories.
+Product-Category Relationships: Manage the association between products and categories by tagging products with categories.
+
+Search: Search through the database for products matching the input. 
 
 Technologies Used:
 
@@ -54,10 +56,10 @@ PUT /api/updatecategory: Update an existing category.
 
 DELETE /api/category/delete/{id}: Delete a category by its ID.
 
-Product Categories-
+Product Categories- (Database relationshj
 
 GET /api/productcategories: Retrieve all product-category associations.
 
 POST /api/createproductcategory: Create a new product-category association.
 
-DELETE /api/remove: Remove a product from a category (not implemented, done through controller).
+DELETE /api/remove: Remove a product from a category (not implemented yet, done through controller).
